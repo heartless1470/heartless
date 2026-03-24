@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0a0a0f;
+  --fg: #f0ede8;
+  --accent: #c8f545;
+  --accent-dim: #a8d530;
+  --muted: #7a7a8c;
+  --card: #13131a;
+  --border: #1e1e2a;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  cursor: none;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+/* Scramble text keyframes */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+/* Marquee */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Skill bar fill */
+@keyframes fillBar {
+  from { width: 0%; }
+}
+
+/* Count up handled in JS */
+
+/* Glow blob */
+.glow-blob {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,245,69,0.12) 0%, transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: left 0.08s ease, top 0.08s ease;
+  z-index: 0;
+}
+
+/* Section fade-in on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE LAYOUT UTILITIES ===== */
+
+/* Section containers */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 24px;
+}
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 100px 24px;
+}
+.cta-section {
+  padding: 100px 24px;
+}
+
+/* About 2-col grid */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* Navbar */
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-cta {
+  background: #c8f545;
+  color: #0a0a0f;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+}
+.mobile-nav {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-nav.open {
+  max-height: 520px;
+}
+
+/* Work portfolio grid */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+.work-grid-featured { grid-row: 1 / 3; }
+.work-grid-right    { display: grid; gap: 16px; }
+.work-grid-bottom   {
+  grid-column: 1 / 3;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* ===== MOBILE BREAKPOINT ===== */
+@media (max-width: 768px) {
+  body { cursor: auto; }
+
+  /* Navbar */
+  .nav-links,
+  .nav-cta       { display: none !important; }
+  .nav-hamburger { display: flex !important; }
+
+  /* Section containers */
+  .section-container,
+  .faq-container { padding: 64px 20px; }
+
+  /* Work grid → single column */
+  .work-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .work-grid-featured { grid-row: auto; }
+  .work-grid-bottom {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+
+  /* Cursor */
+  .cursor-dot,
+  .cursor-ring,
+  .glow-blob { display: none !important; }
+
+  /* CTA section */
+  .cta-section { padding: 64px 20px !important; }
+
+  /* Testimonial cards */
+  .testimonial-card { min-width: 280px !important; }
+
+  /* About 2-col grid → stack */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
