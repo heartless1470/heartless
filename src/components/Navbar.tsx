@@ -56,7 +56,7 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop CTA */}
-        <a href="#contact" className="nav-cta">Start Project →</a>
+        <a href="#contact" className="nav-cta">Contact Form →</a>
 
         {/* Mobile hamburger */}
         <button
@@ -126,7 +126,7 @@ export default function Navbar() {
                 textDecoration: "none",
               }}
             >
-              Start Project →
+              Contact Form →
             </a>
           </div>
         </div>

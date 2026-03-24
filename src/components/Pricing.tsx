@@ -34,7 +34,7 @@ const plans = [
       "7-day delivery",
       "30-day revisions",
     ],
-    cta: "Start Project",
+    cta: "Contact Form",
     highlight: true,
   },
   {

@@ -163,7 +163,7 @@ export default function Hero() {
             display: "inline-block",
           }}
         >
-          Start a Project
+          Contact Form
         </a>
       </div>
 

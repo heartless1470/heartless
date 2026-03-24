@@ -1,8 +1,48 @@
 "use client";
+import type { FormEvent } from "react";
 import { useReveal } from "@/hooks/useReveal";
+
+const CONTACT_EMAIL = "howardduffus1470@gmail.com";
+
+function buildMailtoFromForm(formData: FormData) {
+  const name = String(formData.get("name") || "").trim();
+  const business = String(formData.get("business") || "").trim();
+  const email = String(formData.get("email") || "").trim();
+  const phone = String(formData.get("phone") || "").trim();
+  const service = String(formData.get("service") || "").trim();
+  const budget = String(formData.get("budget") || "").trim();
+  const timeline = String(formData.get("timeline") || "").trim();
+  const message = String(formData.get("message") || "").trim();
+
+  const subject = encodeURIComponent(`New enquiry: ${service || "Website Project"}`);
+  const body = encodeURIComponent(
+    [
+      "New contact form enquiry",
+      "",
+      `Name: ${name}`,
+      `Business: ${business || "N/A"}`,
+      `Email: ${email}`,
+      `Phone: ${phone || "N/A"}`,
+      `Service Needed: ${service}`,
+      `Budget Range: ${budget || "N/A"}`,
+      `Timeline: ${timeline || "N/A"}`,
+      "",
+      "Project Details:",
+      message,
+    ].join("\n")
+  );
+
+  return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+}
 
 export default function CTA() {
   const ref = useReveal();
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    window.location.href = buildMailtoFromForm(formData);
+  };
 
   return (
     <section
@@ -43,24 +83,113 @@ export default function CTA() {
           Ready to grow your business?
         </h2>
         <p style={{ color: "#0a0a0f", opacity: 0.6, fontSize: 18, marginBottom: 40 }}>
-          I reply within 4 hours. Let&apos;s build something that actually works.
+          Fill this out and I&apos;ll have what I need to help properly. Your email app opens with everything pre-filled.
         </p>
-        <a
-          href="mailto:hello@heartless.studio"
+
+        <form
+          onSubmit={onSubmit}
           style={{
-            display: "inline-block",
-            background: "#0a0a0f",
-            color: "#c8f545",
-            fontWeight: 800,
-            fontSize: 18,
-            padding: "20px 48px",
-            borderRadius: 12,
-            textDecoration: "none",
-            letterSpacing: "-0.01em",
+            textAlign: "left",
+            background: "rgba(10,10,15,0.08)",
+            border: "1px solid rgba(10,10,15,0.18)",
+            borderRadius: 14,
+            padding: 20,
           }}
         >
-          Start a Project →
-        </a>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: 12,
+              marginBottom: 12,
+            }}
+          >
+            <input
+              className="contact-input"
+              name="name"
+              placeholder="Your Name *"
+              required
+              style={{ border: "1px solid rgba(10,10,15,0.2)", borderRadius: 10, padding: "12px 14px", fontSize: 14 }}
+            />
+            <input
+              className="contact-input"
+              name="business"
+              placeholder="Business Name"
+              style={{ border: "1px solid rgba(10,10,15,0.2)", borderRadius: 10, padding: "12px 14px", fontSize: 14 }}
+            />
+            <input
+              className="contact-input"
+              name="email"
+              type="email"
+              placeholder="Email *"
+              required
+              style={{ border: "1px solid rgba(10,10,15,0.2)", borderRadius: 10, padding: "12px 14px", fontSize: 14 }}
+            />
+            <input
+              className="contact-input"
+              name="phone"
+              placeholder="Phone Number"
+              style={{ border: "1px solid rgba(10,10,15,0.2)", borderRadius: 10, padding: "12px 14px", fontSize: 14 }}
+            />
+            <input
+              className="contact-input"
+              name="service"
+              placeholder="Service Needed *"
+              required
+              style={{ border: "1px solid rgba(10,10,15,0.2)", borderRadius: 10, padding: "12px 14px", fontSize: 14 }}
+            />
+            <input
+              className="contact-input"
+              name="budget"
+              placeholder="Budget Range"
+              style={{ border: "1px solid rgba(10,10,15,0.2)", borderRadius: 10, padding: "12px 14px", fontSize: 14 }}
+            />
+            <input
+              className="contact-input"
+              name="timeline"
+              placeholder="Preferred Timeline"
+              style={{ border: "1px solid rgba(10,10,15,0.2)", borderRadius: 10, padding: "12px 14px", fontSize: 14 }}
+            />
+          </div>
+          <textarea
+            className="contact-textarea"
+            name="message"
+            placeholder="Tell me what you need, your goals, and anything important *"
+            required
+            rows={5}
+            style={{
+              width: "100%",
+              border: "1px solid rgba(10,10,15,0.2)",
+              borderRadius: 10,
+              padding: "12px 14px",
+              fontSize: 14,
+              lineHeight: 1.5,
+              marginBottom: 14,
+              resize: "vertical",
+            }}
+          />
+
+          <button
+            type="submit"
+            style={{
+              display: "inline-block",
+              background: "#0a0a0f",
+              color: "#c8f545",
+              fontWeight: 800,
+              fontSize: 16,
+              padding: "14px 26px",
+              borderRadius: 12,
+              border: "none",
+              cursor: "pointer",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            Open Email Draft →
+          </button>
+          <p style={{ margin: "10px 0 0", fontSize: 12, color: "rgba(10,10,15,0.7)" }}>
+            Sends to {CONTACT_EMAIL}
+          </p>
+        </form>
       </div>
     </section>
   );

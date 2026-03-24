@@ -184,6 +184,22 @@ body {
   gap: 16px;
 }
 
+/* Contact form field contrast */
+.contact-input,
+.contact-textarea {
+  background: #fffef8;
+  color: #0a0a0f;
+}
+.contact-input::placeholder,
+.contact-textarea::placeholder {
+  color: #4a4a57;
+}
+.contact-input:focus,
+.contact-textarea:focus {
+  outline: 2px solid #0a0a0f;
+  outline-offset: 1px;
+}
+
 /* ===== MOBILE BREAKPOINT ===== */
 @media (max-width: 768px) {
   body { cursor: auto; }
