@@ -3,6 +3,7 @@ import type { FormEvent } from "react";
 import { useReveal } from "@/hooks/useReveal";
 
 const CONTACT_EMAIL = "howardduffus1470@gmail.com";
+const CONTACT_EMAIL_ENCODED = encodeURIComponent(CONTACT_EMAIL);
 
 function buildMailtoFromForm(formData: FormData) {
   const name = String(formData.get("name") || "").trim();
@@ -32,7 +33,10 @@ function buildMailtoFromForm(formData: FormData) {
     ].join("\n")
   );
 
-  return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  const gmailCompose = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL_ENCODED}&su=${subject}&body=${body}`;
+  const mailtoFallback = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+
+  return { gmailCompose, mailtoFallback };
 }
 
 export default function CTA() {
@@ -41,7 +45,11 @@ export default function CTA() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    window.location.href = buildMailtoFromForm(formData);
+    const { gmailCompose, mailtoFallback } = buildMailtoFromForm(formData);
+    const popup = window.open(gmailCompose, "_blank", "noopener,noreferrer");
+    if (!popup) {
+      window.location.href = mailtoFallback;
+    }
   };
 
   return (
