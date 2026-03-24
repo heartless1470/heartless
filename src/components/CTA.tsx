@@ -43,7 +43,7 @@ export default function CTA() {
           Ready to grow your business?
         </h2>
         <p style={{ color: "#0a0a0f", opacity: 0.6, fontSize: 18, marginBottom: 40 }}>
-          I reply within 4 hours. Let's build something that actually works.
+          I reply within 4 hours. Let&apos;s build something that actually works.
         </p>
         <a
           href="mailto:hello@heartless.studio"

@@ -56,7 +56,7 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
     >
       <div style={{ color: t.color, fontSize: 24, marginBottom: 16 }}>★★★★★</div>
       <p style={{ color: "#f0ede8", fontSize: 15, lineHeight: 1.7, margin: "0 0 24px", fontStyle: "italic" }}>
-        "{t.quote}"
+          &ldquo;{t.quote}&rdquo;
       </p>
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
         <div

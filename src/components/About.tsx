@@ -84,7 +84,7 @@ export default function About() {
             I build sites that <span style={{ color: "#c8f545" }}>pay for themselves.</span>
           </h2>
           <p style={{ color: "#7a7a8c", fontSize: 15, lineHeight: 1.8, marginBottom: 32 }}>
-            I'm a full-stack web developer specializing in small business websites. I've helped restaurants, law firms, clinics, and real estate agents build an online presence that actually converts visitors into paying customers — not just a pretty brochure.
+              I&apos;m a full-stack web developer specializing in small business websites. I&apos;ve helped restaurants, law firms, clinics, and real estate agents build an online presence that actually converts visitors into paying customers — not just a pretty brochure.
           </p>
           <p style={{ color: "#7a7a8c", fontSize: 15, lineHeight: 1.8, marginBottom: 40 }}>
             Every site I build is fast, mobile-first, SEO-ready, and animated by design — not as a bonus.
@@ -127,7 +127,7 @@ export default function About() {
               ))}
             </div>
             <div>
-              <span style={{ color: "#7a7a8c" }}>// Every site ships with</span>
+              <span style={{ color: "#7a7a8c" }}>{"// Every site ships with"}</span>
               {"\n"}
               <span style={{ color: "#c8f545" }}>const</span>
               <span style={{ color: "#f0ede8" }}> siteConfig </span>
@@ -136,25 +136,25 @@ export default function About() {
               {"  "}
               <span style={{ color: "#5af0e0" }}>speed</span>
               <span style={{ color: "#7a7a8c" }}>: </span>
-              <span style={{ color: "#c8f545" }}>"100/100"</span>
+                <span style={{ color: "#c8f545" }}>{'"100/100"'}</span>
               <span style={{ color: "#7a7a8c" }}>,</span>
               {"\n"}
               {"  "}
               <span style={{ color: "#5af0e0" }}>seo</span>
               <span style={{ color: "#7a7a8c" }}>: </span>
-              <span style={{ color: "#c8f545" }}>"optimized"</span>
+                <span style={{ color: "#c8f545" }}>{'"optimized"'}</span>
               <span style={{ color: "#7a7a8c" }}>,</span>
               {"\n"}
               {"  "}
               <span style={{ color: "#5af0e0" }}>animations</span>
               <span style={{ color: "#7a7a8c" }}>: </span>
-              <span style={{ color: "#c8f545" }}>"buttery smooth"</span>
+                <span style={{ color: "#c8f545" }}>{'"buttery smooth"'}</span>
               <span style={{ color: "#7a7a8c" }}>,</span>
               {"\n"}
               {"  "}
               <span style={{ color: "#5af0e0" }}>delivery</span>
               <span style={{ color: "#7a7a8c" }}>: </span>
-              <span style={{ color: "#c8f545" }}>"7 days"</span>
+                <span style={{ color: "#c8f545" }}>{'"7 days"'}</span>
               {"\n"}
               <span style={{ color: "#7a7a8c" }}>{"}"}</span>
             </div>
