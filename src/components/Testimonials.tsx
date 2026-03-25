@@ -11,7 +11,7 @@ const testimonials = [
     color: "#c8f545",
   },
   {
-    quote: "Worth every penny. I was skeptical spending $849 but we booked two new cases from organic search within 30 days. The ROI is real.",
+    quote: "Worth every penny. I was skeptical spending $399 but we booked two new cases from organic search within 30 days. The ROI is real.",
     author: "James T.",
     company: "LexFirm Pro",
     avatar: "J",
@@ -25,7 +25,7 @@ const testimonials = [
     color: "#f545c8",
   },
   {
-    quote: "I was paying $100/month for a WordPress site that was slow and looked terrible. Spent $349 here and got something 10x better.",
+    quote: "I was paying $100/month for a WordPress site that was slow and looked terrible. Spent $299 here and got something 10x better.",
     author: "Carlos R.",
     company: "ClinicCare",
     avatar: "C",
