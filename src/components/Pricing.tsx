@@ -27,7 +27,7 @@ const plans = [
       "Full SEO optimization",
       "CMS integration",
       "Analytics + heatmap",
-      "Strategy call",
+      "Free strategy call",
       "7-day delivery",
       "30-day revisions",
     ],
