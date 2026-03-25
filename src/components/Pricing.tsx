@@ -11,6 +11,7 @@ const plans = [
       "Mobile-first design",
       "Basic SEO setup",
       "Contact form",
+      "Free strategy call",
       "7-day delivery",
       "30-day revisions",
     ],
