@@ -77,7 +77,6 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
         </div>
         <div>
           <div style={{ fontWeight: 700, fontSize: 14 }}>{t.author}</div>
-          <div style={{ color: "#7a7a8c", fontSize: 12 }}>{t.company}</div>
         </div>
       </div>
     </div>
