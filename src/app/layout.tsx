@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Heartless Studio — Web Design for Small Businesses",
+  title: "AstroCode Studio — Web Design for Small Businesses",
   description:
     "Premium websites for small businesses. Fast, animated, SEO-optimized. Starting at $299.",
 };

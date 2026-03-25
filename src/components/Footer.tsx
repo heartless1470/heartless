@@ -23,7 +23,7 @@ export default function Footer() {
         }}
       >
         <span style={{ fontWeight: 800, fontSize: 18, letterSpacing: "-0.04em", color: "#c8f545" }}>
-          heartless<span style={{ color: "#f0ede8" }}>.</span>
+          astrocodestudio<span style={{ color: "#f0ede8" }}>.</span>
         </span>
 
         <nav style={{ display: "flex", gap: 28, flexWrap: "wrap" }}>
@@ -39,7 +39,7 @@ export default function Footer() {
         </nav>
 
         <p style={{ color: "#7a7a8c", fontSize: 13, margin: 0 }}>
-          © {new Date().getFullYear()} Heartless Studio. All rights reserved.
+          © {new Date().getFullYear()} AstroCode Studio. All rights reserved.
         </p>
       </div>
     </footer>

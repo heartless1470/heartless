@@ -38,7 +38,7 @@ export default function Navbar() {
       <nav className="nav-inner">
         {/* Logo */}
         <span style={{ fontWeight: 800, fontSize: 20, letterSpacing: "-0.04em", color: "#c8f545" }}>
-          heartless<span style={{ color: "#f0ede8" }}>.</span>
+          astrocodestudio<span style={{ color: "#f0ede8" }}>.</span>
         </span>
 
         {/* Desktop links */}

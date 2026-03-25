@@ -1,6 +1,7 @@
 "use client";
 
 import Cursor from "@/components/Cursor";
+import StarField from "@/components/StarField";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
@@ -18,6 +19,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <div style={{ background: "#0a0a0f", color: "#f0ede8", minHeight: "100vh" }}>
+      <StarField />
       <Cursor />
       <Navbar />
       <Hero />

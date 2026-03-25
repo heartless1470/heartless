@@ -2,7 +2,7 @@
 import type { FormEvent } from "react";
 import { useReveal } from "@/hooks/useReveal";
 
-const CONTACT_EMAIL = "howardduffus1470@gmail.com";
+const CONTACT_EMAIL = "astrocodestudio@gmail.com";
 const CONTACT_EMAIL_ENCODED = encodeURIComponent(CONTACT_EMAIL);
 
 function buildMailtoFromForm(formData: FormData) {
