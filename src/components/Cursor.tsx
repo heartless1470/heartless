@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 
 export default function Cursor() {
+  const baseColor = "#F5A545";
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const blobRef = useRef<HTMLDivElement>(null);
@@ -11,9 +12,35 @@ export default function Cursor() {
     let dotX = 0, dotY = 0;
     let raf: number;
 
+    const isAccentGreen = (value: string) => {
+      const m = value.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
+      if (!m) return false;
+      const r = Number(m[1]);
+      const g = Number(m[2]);
+      const b = Number(m[3]);
+      return r > 160 && g > 210 && b < 130;
+    };
+
+    const setCursorBlack = (black: boolean) => {
+      if (dotRef.current) {
+        dotRef.current.style.background = black ? "#0a0a0f" : baseColor;
+      }
+      if (ringRef.current) {
+        ringRef.current.style.borderColor = black ? "#0a0a0f" : baseColor;
+      }
+    };
+
     const onMove = (e: MouseEvent) => {
       dotX = e.clientX;
       dotY = e.clientY;
+
+      const hovered = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
+      if (hovered) {
+        const styles = window.getComputedStyle(hovered);
+        const onAccent = [styles.backgroundColor, styles.borderColor, styles.color].some(isAccentGreen);
+        setCursorBlack(onAccent);
+      }
+
       if (blobRef.current) {
         blobRef.current.style.left = `${e.clientX}px`;
         blobRef.current.style.top = `${e.clientY}px`;
@@ -36,7 +63,7 @@ export default function Cursor() {
       if (ringRef.current) {
         ringRef.current.style.width = "48px";
         ringRef.current.style.height = "48px";
-        ringRef.current.style.borderColor = "#c8f545";
+        ringRef.current.style.borderColor = baseColor;
         ringRef.current.style.mixBlendMode = "difference";
       }
     };
@@ -44,7 +71,7 @@ export default function Cursor() {
       if (ringRef.current) {
         ringRef.current.style.width = "40px";
         ringRef.current.style.height = "40px";
-        ringRef.current.style.borderColor = "#c8f545";
+        ringRef.current.style.borderColor = baseColor;
         ringRef.current.style.mixBlendMode = "normal";
       }
     };
@@ -79,7 +106,7 @@ export default function Cursor() {
           width: 8,
           height: 8,
           borderRadius: "50%",
-          background: "#c8f545",
+          background: "#F5A545",
           pointerEvents: "none",
           zIndex: 9999,
           willChange: "transform",
@@ -95,7 +122,7 @@ export default function Cursor() {
           width: 40,
           height: 40,
           borderRadius: "50%",
-          border: "1.5px solid #c8f545",
+          border: "1.5px solid #F5A545",
           pointerEvents: "none",
           zIndex: 9998,
           transition: "width 0.2s, height 0.2s, border-color 0.2s",

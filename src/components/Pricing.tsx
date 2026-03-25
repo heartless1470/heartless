@@ -37,9 +37,6 @@ const plans = [
 ];
 
 const addons = [
-  { label: "Booking System", price: "$199" },
-  { label: "Logo & Branding", price: "$149" },
-  { label: "Copywriting", price: "$149" },
   { label: "Managed Hosting", price: "$20/mo" },
   { label: "Domain Name", price: "$12-25/yr" },
   { label: "Rush Delivery", price: "$99" },
