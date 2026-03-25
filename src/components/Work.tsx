@@ -3,45 +3,49 @@ import { useReveal } from "@/hooks/useReveal";
 
 const projects = [
   {
-    title: "Bloom Bakery",
-    category: "Local Business · Landing Page",
-    stat: "Conv. rate 1.1% → 4.8%",
+    title: "Wildflour Local Bakery",
+    category: "Local Bakery Website",
+    stat: "Live Project",
     color: "#c8f545",
+    image: "/wildflour.png",
+    href: "https://wildflourlocalbakery.com",
     size: "large",
   },
   {
-    title: "LexFirm Pro",
-    category: "Law Firm · 5-Page Site",
-    stat: "+38% inbound leads",
+    title: "Duffus Flooring",
+    category: "Flooring Company Website",
+    stat: "Live Project",
     color: "#5af0e0",
+    image: "/duffusflooring.png",
+    href: "https://www.duffusflooring.com",
     size: "small",
   },
   {
-    title: "Nova Apparel",
-    category: "Fashion Brand · Launch Site",
-    stat: "87% mobile conversion",
+    title: "LexFirm Pro",
+    category: "Law Firm Website",
+    stat: "Live Demo",
     color: "#f545c8",
+    image: "/lexfirm.png",
+    href: "https://lexfirm-pro.vercel.app",
     size: "small",
   },
   {
-    title: "ClinicCare",
-    category: "Medical Clinic · Booking Site",
-    stat: "3× organic traffic",
+    title: "Bloom Bakery Demo",
+    category: "Bakery Landing Page",
+    stat: "Live Demo",
     color: "#f5a545",
-    size: "small",
-  },
-  {
-    title: "RealNest Realty",
-    category: "Real Estate · Full Site",
-    stat: "Conv. rate 0.8% → 3.9%",
-    color: "#a545f5",
+    image: "/bloombakery.png",
+    href: "https://demo-bloom-bakery.vercel.app",
     size: "small",
   },
 ];
 
 function Card({ p, large = false }: { p: typeof projects[0]; large?: boolean }) {
   return (
-    <div
+    <a
+      href={p.href}
+      target="_blank"
+      rel="noopener noreferrer"
       data-hover
       style={{
         background: "#13131a",
@@ -70,6 +74,16 @@ function Card({ p, large = false }: { p: typeof projects[0]; large?: boolean }) 
         if (overlay) overlay.style.opacity = "0";
       }}
     >
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `url(${p.image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.34,
+        }}
+      />
       {/* Gradient bg */}
       <div
         style={{
@@ -118,7 +132,7 @@ function Card({ p, large = false }: { p: typeof projects[0]; large?: boolean }) 
         </h3>
         <p style={{ color: "#7a7a8c", fontSize: 13, margin: 0 }}>{p.category}</p>
       </div>
-    </div>
+    </a>
   );
 }
 
@@ -159,8 +173,9 @@ export default function Work() {
           <Card p={projects[2]} />
         </div>
         <div className="work-grid-bottom">
-          <Card p={projects[3]} />
-          <Card p={projects[4]} />
+          <div style={{ gridColumn: "1 / 3" }}>
+            <Card p={projects[3]} />
+          </div>
         </div>
       </div>
     </section>
