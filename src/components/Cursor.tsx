@@ -6,11 +6,15 @@ export default function Cursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const blobRef = useRef<HTMLDivElement>(null);
+  const particleRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   useEffect(() => {
     let ringX = 0, ringY = 0;
     let dotX = 0, dotY = 0;
+    let prevDotX = 0, prevDotY = 0;
     let raf: number;
+    let lastMoveAt = 0;
+    const trail: Array<{ x: number; y: number }> = [];
 
     const isAccentGreen = (value: string) => {
       const m = value.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
@@ -33,6 +37,7 @@ export default function Cursor() {
     const onMove = (e: MouseEvent) => {
       dotX = e.clientX;
       dotY = e.clientY;
+      lastMoveAt = performance.now();
 
       const hovered = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
       if (hovered) {
@@ -50,12 +55,35 @@ export default function Cursor() {
     const animate = () => {
       ringX += (dotX - ringX) * 0.12;
       ringY += (dotY - ringY) * 0.12;
+
+      trail.unshift({ x: dotX, y: dotY });
+      if (trail.length > 18) trail.pop();
+
+      const movement = Math.hypot(dotX - prevDotX, dotY - prevDotY);
+      const moving = movement > 0.4;
+      const activeFade = Math.max(0, 1 - (performance.now() - lastMoveAt) / 180);
+      const particleOpacity = moving ? 0.22 : 0.22 * activeFade;
+
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${dotX - 4}px, ${dotY - 4}px)`;
       }
       if (ringRef.current) {
         ringRef.current.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px)`;
       }
+
+      particleRefs.current.forEach((particle, index) => {
+        if (!particle) return;
+        const point = trail[(index + 1) * 4] ?? trail[trail.length - 1];
+        if (!point) return;
+        const size = 5 - index;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.opacity = `${Math.max(0, particleOpacity - index * 0.05)}`;
+        particle.style.transform = `translate(${point.x - size / 2}px, ${point.y - size / 2}px)`;
+      });
+
+      prevDotX = dotX;
+      prevDotY = dotY;
       raf = requestAnimationFrame(animate);
     };
 
@@ -129,6 +157,28 @@ export default function Cursor() {
           willChange: "transform",
         }}
       />
+      {[0, 1, 2].map((i) => (
+        <div
+          key={i}
+          ref={(el) => {
+            particleRefs.current[i] = el;
+          }}
+          className="cursor-particle"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: 5 - i,
+            height: 5 - i,
+            borderRadius: "50%",
+            background: "#F5A545",
+            pointerEvents: "none",
+            zIndex: 9997,
+            opacity: 0,
+            willChange: "transform, opacity",
+          }}
+        />
+      ))}
     </>
   );
 }

@@ -227,7 +227,8 @@ body {
   /* Cursor */
   .cursor-dot,
   .cursor-ring,
-  .glow-blob { display: none !important; }
+  .glow-blob,
+  .cursor-particle { display: none !important; }
 
   /* CTA section */
   .cta-section { padding: 64px 20px !important; }
