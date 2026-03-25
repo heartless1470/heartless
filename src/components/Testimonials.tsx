@@ -94,7 +94,7 @@ export default function Testimonials() {
     if (!track) return;
     let x = 0;
     let raf: number;
-    const speed = 0.5;
+    const speed = 0.7;
 
     const animate = () => {
       if (!isPaused.current) {
