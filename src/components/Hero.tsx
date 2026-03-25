@@ -68,27 +68,6 @@ export default function Hero() {
         paddingTop: 100,
       }}
     >
-      {/* Urgency badge */}
-      <div
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 8,
-          background: "rgba(200,245,69,0.1)",
-          border: "1px solid rgba(200,245,69,0.3)",
-          borderRadius: 100,
-          padding: "6px 16px",
-          marginBottom: 32,
-          width: "fit-content",
-          opacity: visible ? 1 : 0,
-          transform: visible ? "translateY(0)" : "translateY(20px)",
-          transition: "opacity 0.6s, transform 0.6s",
-        }}
-      >
-        <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#c8f545", display: "inline-block", animation: "pulse 2s infinite" }} />
-        <span style={{ color: "#c8f545", fontSize: 13, fontWeight: 600 }}>3 spots left this month</span>
-      </div>
-
       {/* Headline */}
       <h1
         style={{

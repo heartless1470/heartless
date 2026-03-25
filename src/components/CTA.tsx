@@ -66,21 +66,6 @@ export default function CTA() {
       }}
     >
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            background: "rgba(10,10,15,0.1)",
-            border: "1px solid rgba(10,10,15,0.2)",
-            borderRadius: 100,
-            padding: "6px 16px",
-            marginBottom: 28,
-          }}
-        >
-          <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#0a0a0f", display: "inline-block" }} />
-          <span style={{ color: "#0a0a0f", fontSize: 13, fontWeight: 600 }}>3 spots left this month</span>
-        </div>
         <h2
           style={{
             fontSize: "clamp(2.5rem, 8vw, 6rem)",
