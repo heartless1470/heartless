@@ -1,12 +1,10 @@
 "use client";
-import { useState } from "react";
 import { useReveal } from "@/hooks/useReveal";
 
 const plans = [
   {
     name: "Starter",
-    monthly: 349,
-    annual: 299,
+    project: 299,
     desc: "For solo entrepreneurs and new businesses that need a clean, fast site.",
     features: [
       "Up to 5 pages",
@@ -21,8 +19,7 @@ const plans = [
   },
   {
     name: "Pro",
-    monthly: 849,
-    annual: 749,
+    project: 399,
     desc: "The most popular choice. Gets you animations, SEO, CMS, and everything you need to compete.",
     features: [
       "Up to 10 pages",
@@ -37,24 +34,6 @@ const plans = [
     cta: "Contact Form",
     highlight: true,
   },
-  {
-    name: "Enterprise",
-    monthly: 1799,
-    annual: 1599,
-    desc: "For established local businesses that need a full online presence and custom functionality.",
-    features: [
-      "Unlimited pages",
-      "Custom interactions",
-      "Custom integrations",
-      "Full SEO + schema",
-      "Priority support",
-      "Source files",
-      "7-day delivery",
-      "30-day revisions",
-    ],
-    cta: "Let's Talk",
-    highlight: false,
-  },
 ];
 
 const addons = [
@@ -65,7 +44,6 @@ const addons = [
 ];
 
 export default function Pricing() {
-  const [annual, setAnnual] = useState(false);
   const ref = useReveal();
 
   return (
@@ -92,39 +70,9 @@ export default function Pricing() {
           One new customer from your site pays for the whole package.
         </p>
 
-        {/* Toggle */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 48 }}>
-          <span style={{ color: annual ? "#7a7a8c" : "#f0ede8", fontSize: 14, fontWeight: 600 }}>Monthly</span>
-          <button
-            onClick={() => setAnnual(!annual)}
-            style={{
-              width: 52,
-              height: 28,
-              borderRadius: 14,
-              background: "#c8f545",
-              border: "none",
-              cursor: "pointer",
-              position: "relative",
-              transition: "background 0.2s",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                top: 4,
-                left: annual ? 26 : 4,
-                width: 20,
-                height: 20,
-                borderRadius: "50%",
-                background: "#0a0a0f",
-                transition: "left 0.25s",
-              }}
-            />
-          </button>
-          <span style={{ color: annual ? "#f0ede8" : "#7a7a8c", fontSize: 14, fontWeight: 600 }}>
-            Annual <span style={{ color: "#c8f545" }}>–15%</span>
-          </span>
-        </div>
+        <p style={{ color: "#7a7a8c", fontSize: 14, marginBottom: 48 }}>
+          One-time project pricing. No monthly commitment.
+        </p>
       </div>
 
       {/* Cards */}
@@ -192,7 +140,10 @@ export default function Pricing() {
                 marginBottom: 4,
               }}
             >
-              ${annual ? p.annual : p.monthly}
+              ${p.project}
+            </div>
+            <div style={{ color: p.highlight ? "#0a0a0f" : "#7a7a8c", fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>
+              Per project
             </div>
             <p style={{ color: p.highlight ? "#0a0a0f" : "#7a7a8c", fontSize: 13, marginBottom: 24, lineHeight: 1.6 }}>
               {p.desc}

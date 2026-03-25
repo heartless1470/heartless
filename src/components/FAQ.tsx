@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: "What if I want to update the site myself after launch?",
-    a: "All Pro and Enterprise sites include CMS integration (like Sanity or Contentful) so you can update text, images, and blog posts without touching code.",
+    a: "The Pro plan includes CMS integration (like Sanity or Contentful) so you can update text, images, and blog posts without touching code. Starter can add CMS as an add-on.",
   },
   {
     q: "Will my site actually rank on Google?",
