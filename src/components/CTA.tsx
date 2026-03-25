@@ -46,9 +46,12 @@ export default function CTA() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const { gmailCompose, mailtoFallback } = buildMailtoFromForm(formData);
-    const popup = window.open(gmailCompose, "_blank", "noopener,noreferrer");
-    if (!popup) {
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) {
       window.location.href = mailtoFallback;
+    } else {
+      const popup = window.open(gmailCompose, "_blank", "noopener,noreferrer");
+      if (!popup) window.location.href = mailtoFallback;
     }
   };
 
