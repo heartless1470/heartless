@@ -28,8 +28,8 @@ const faqs = [
     a: "Yes — I always do 50% upfront and 50% on delivery. This removes risk for you while keeping the project moving. No full upfront required.",
   },
   {
-    q: "What's included in the monthly retainer?",
-    a: "At $69/mo you get: security updates, plugin/dependency updates, minor content changes (up to 1hr/month), uptime monitoring, and priority support. Cancel any time.",
+    q: "Is hosting and the domain included?",
+    a: "I include setup, launch, SSL, and connecting your domain to the site. Hosting and domain renewal costs are separate so you keep ownership and control. Typical hosting starts around $20/month and a .com domain is usually $12-25/year.",
   },
 ];
 

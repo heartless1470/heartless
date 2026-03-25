@@ -40,6 +40,8 @@ const addons = [
   { label: "Booking System", price: "$199" },
   { label: "Logo & Branding", price: "$149" },
   { label: "Copywriting", price: "$149" },
+  { label: "Managed Hosting", price: "$20/mo" },
+  { label: "Domain Name", price: "$12-25/yr" },
   { label: "Rush Delivery", price: "$99" },
 ];
 
@@ -209,6 +211,9 @@ export default function Pricing() {
             </div>
           ))}
         </div>
+        <p style={{ color: "#7a7a8c", fontSize: 13, maxWidth: 720, margin: "20px auto 0", lineHeight: 1.7 }}>
+          Hosting and domain are billed separately. I include setup, launch, SSL, and connecting everything for you, but the recurring provider costs stay in your name.
+        </p>
         <p style={{ color: "#7a7a8c", fontSize: 13, marginTop: 20 }}>
           50% upfront · 50% on delivery · I reply within 4 hours
         </p>
