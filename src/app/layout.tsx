@@ -20,7 +20,6 @@ export const metadata: Metadata = {
     "Premium websites for small businesses. Fast, animated, SEO-optimized. Starting at $299.",
   keywords: ["web design", "small business websites", "affordable web design", "animated websites", "SEO services"],
   authors: [{ name: "AstroCode Studio" }],
-  viewport: "width=device-width, initial-scale=1",
   robots: {
     index: true,
     follow: true,
@@ -52,9 +51,18 @@ export const metadata: Metadata = {
       "Premium websites for small businesses. Fast, animated, SEO-optimized. Starting at $299.",
     images: ["https://astrocode.studio/twitter-image.png"],
   },
+  icons: [
+    { rel: "icon", url: "/A.png" },
+    { rel: "apple-touch-icon", url: "/A.png" },
+  ],
   alternates: {
     canonical: "https://astrocode.studio",
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
