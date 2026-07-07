@@ -372,6 +372,16 @@ svg {
   font-size: 14px;
 }
 
+.auth-success {
+  margin: 18px 0;
+  border: 1px solid rgba(87, 255, 140, 0.4);
+  border-radius: 12px;
+  background: rgba(87, 255, 140, 0.1);
+  color: #a6ffc6;
+  padding: 12px 14px;
+  font-size: 14px;
+}
+
 .auth-form,
 .backend-form {
   display: grid;

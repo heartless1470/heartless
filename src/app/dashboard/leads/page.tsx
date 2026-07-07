@@ -3,7 +3,18 @@ import { getSessionProfile } from "@/lib/supabase/server";
 import { getLeads } from "@/lib/db/queries";
 import { LeadsTable } from "@/components/portal/LeadsTable";
 
-export default async function LeadsPage() {
+const errors: Record<string, string> = {
+  "missing-name": "Contact person is required.",
+  "create-failed": "Could not create the lead. Check that you have permission to do so.",
+};
+
+export default async function LeadsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string; created?: string }>;
+}) {
+  const { error, created } = await searchParams;
+  const errorMessage = error ? errors[error] || "Something went wrong." : null;
   const { supabase, profile } = await getSessionProfile();
 
   let leads: any[] = [];
@@ -44,6 +55,8 @@ export default async function LeadsPage() {
             ? "Add leads you've found. Track them from qualification to client conversion."
             : "Add new leads manually or review incoming leads."}
         </p>
+        {errorMessage && <div className="auth-error">{errorMessage}</div>}
+        {created === "lead" && <div className="auth-success">Lead created.</div>}
         <form action={createLeadAction} className="backend-form">
           <label>
             Contact Person *

@@ -267,16 +267,33 @@ CREATE INDEX IF NOT EXISTS idx_files_entity ON public.files(entity_type, entity_
 -- ROW LEVEL SECURITY (RLS) POLICIES
 -- ============================================================================
 
+-- Helper: is the current user an OWNER or ADMIN?
+-- (auth.jwt() ->> 'user_role' is never populated anywhere in this project -
+-- there is no custom access token hook syncing profiles.role into the JWT -
+-- so policies must check the profiles table directly instead.)
+CREATE OR REPLACE FUNCTION public.is_owner_or_admin()
+RETURNS BOOLEAN
+LANGUAGE sql
+SECURITY DEFINER
+STABLE
+SET search_path = public
+AS $$
+  SELECT EXISTS (
+    SELECT 1 FROM public.profiles
+    WHERE id = auth.uid() AND role IN ('OWNER', 'ADMIN')
+  );
+$$;
+
 -- Employees can only see their own data
 ALTER TABLE public.employees ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Employees can view their own record" 
+CREATE POLICY "Employees can view their own record"
   ON public.employees FOR SELECT
-  USING (user_id = auth.uid() OR auth.jwt() ->> 'user_role' = 'OWNER' OR auth.jwt() ->> 'user_role' = 'ADMIN');
+  USING (user_id = auth.uid() OR public.is_owner_or_admin());
 
 CREATE POLICY "Owners and admins can view all employees"
   ON public.employees FOR SELECT
-  USING (auth.jwt() ->> 'user_role' IN ('OWNER', 'ADMIN'));
+  USING (public.is_owner_or_admin());
 
 -- Leads - Employees see only their leads
 ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
@@ -285,14 +302,14 @@ CREATE POLICY "Employees can view their own leads"
   ON public.leads FOR SELECT
   USING (
     employee_id = (SELECT id FROM public.employees WHERE user_id = auth.uid())
-    OR auth.jwt() ->> 'user_role' IN ('OWNER', 'ADMIN')
+    OR public.is_owner_or_admin()
   );
 
 CREATE POLICY "Employees can insert their own leads"
   ON public.leads FOR INSERT
   WITH CHECK (
     employee_id = (SELECT id FROM public.employees WHERE user_id = auth.uid())
-    OR auth.jwt() ->> 'user_role' IN ('OWNER', 'ADMIN')
+    OR public.is_owner_or_admin()
   );
 
 -- Clients table
@@ -300,7 +317,7 @@ ALTER TABLE public.clients ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Owners and admins can view all clients"
   ON public.clients FOR SELECT
-  USING (auth.jwt() ->> 'user_role' IN ('OWNER', 'ADMIN'));
+  USING (public.is_owner_or_admin());
 
 -- Commissions - Employees see only their own
 ALTER TABLE public.commissions ENABLE ROW LEVEL SECURITY;
@@ -309,7 +326,7 @@ CREATE POLICY "Employees can view their own commissions"
   ON public.commissions FOR SELECT
   USING (
     employee_id = (SELECT id FROM public.employees WHERE user_id = auth.uid())
-    OR auth.jwt() ->> 'user_role' IN ('OWNER', 'ADMIN')
+    OR public.is_owner_or_admin()
   );
 
 -- Activity log
@@ -317,7 +334,7 @@ ALTER TABLE public.activity_log ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Owners and admins can view all activity"
   ON public.activity_log FOR SELECT
-  USING (auth.jwt() ->> 'user_role' IN ('OWNER', 'ADMIN'));
+  USING (public.is_owner_or_admin());
 
 -- ============================================================================
 -- HELPFUL VIEWS
