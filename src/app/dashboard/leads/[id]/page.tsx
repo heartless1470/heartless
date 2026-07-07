@@ -85,14 +85,6 @@ export default async function LeadDetailPage({
               <label>Added Date</label>
               <p>{new Date(lead.created_at).toLocaleDateString()}</p>
             </div>
-            <div>
-              <label>Follow-up Date</label>
-              <p>
-                {lead.follow_up_date
-                  ? new Date(lead.follow_up_date).toLocaleDateString()
-                  : "Not set"}
-              </p>
-            </div>
           </div>
         </article>
 

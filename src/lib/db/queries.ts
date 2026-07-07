@@ -77,7 +77,7 @@ export async function getDashboardStatsEmployee(supabase: SupabaseClient, userId
     .from("commissions")
     .select("amount")
     .eq("employee_id", employee.id)
-    .in("status", ["pending", "approved"]);
+    .in("status", ["pending", "earned"]);
 
   const { data: paidCommissions } = await supabase
     .from("commissions")
@@ -199,7 +199,7 @@ export async function getLeads(
  * Get lead by ID with full details
  */
 export async function getLeadDetail(supabase: SupabaseClient, leadId: string) {
-  const { data: lead } = await supabase
+  const { data: lead, error } = await supabase
     .from("leads")
     .select(
       `
@@ -211,7 +211,6 @@ export async function getLeadDetail(supabase: SupabaseClient, leadId: string) {
       business_type,
       notes,
       status,
-      follow_up_date,
       created_at,
       updated_at,
       employee_id,
@@ -220,6 +219,10 @@ export async function getLeadDetail(supabase: SupabaseClient, leadId: string) {
     )
     .eq("id", leadId)
     .single();
+
+  if (error) {
+    console.error("Failed to fetch lead detail:", error);
+  }
 
   if (!lead) return null;
 
@@ -362,7 +365,7 @@ export async function getClientDetail(supabase: SupabaseClient, clientId: string
 
   const { data: invoices } = await supabase
     .from("invoices")
-    .select("id, invoice_number, total, status, created_at")
+    .select("id, invoice_number, amount, status, created_at")
     .eq("client_id", clientId)
     .order("created_at", { ascending: false });
 
