@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { deleteLeadAction } from "@/app/dashboard/leads/actions";
 
 export interface Lead {
   id: string;
@@ -13,7 +14,7 @@ export interface Lead {
   employees?: { full_name: string };
 }
 
-export function LeadsTable({ leads }: { leads: Lead[] }) {
+export function LeadsTable({ leads, canDelete }: { leads: Lead[]; canDelete?: boolean }) {
   if (leads.length === 0) {
     return (
       <div className="empty-state">
@@ -30,6 +31,7 @@ export function LeadsTable({ leads }: { leads: Lead[] }) {
         <div>Email</div>
         <div>Phone</div>
         <div>Status</div>
+        {canDelete && <div></div>}
       </div>
       {leads.map((lead) => (
         <div key={lead.id} className="leads-row">
@@ -42,6 +44,25 @@ export function LeadsTable({ leads }: { leads: Lead[] }) {
           <div>
             <span className={`lead-status ${lead.status}`}>{lead.status}</span>
           </div>
+          {canDelete && (
+            <div>
+              {lead.status === "rejected" && (
+                <form
+                  action={deleteLeadAction}
+                  onSubmit={(e) => {
+                    if (!confirm("Delete this rejected lead? This cannot be undone.")) {
+                      e.preventDefault();
+                    }
+                  }}
+                >
+                  <input type="hidden" name="leadId" value={lead.id} />
+                  <button type="submit" className="mini-button reject-button">
+                    Delete
+                  </button>
+                </form>
+              )}
+            </div>
+          )}
         </div>
       ))}
     </div>

@@ -108,6 +108,14 @@ export default async function ClientDetailPage({
                 <strong className="stat-value">{client.invoices.length}</strong>
               </div>
             </div>
+
+            {profile.role !== "EMPLOYEE" && (
+              <div className="quick-actions">
+                <Link href={`/dashboard/quotes/new?client=${client.id}`} className="action-button">
+                  Create Quote
+                </Link>
+              </div>
+            )}
           </article>
         </div>
       </div>

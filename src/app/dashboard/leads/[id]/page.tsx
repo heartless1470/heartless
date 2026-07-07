@@ -7,6 +7,7 @@ import {
   convertLeadToClientAction,
   rejectLeadAction,
 } from "./actions";
+import { deleteLeadAction } from "../actions";
 
 export default async function LeadDetailPage({
   params,
@@ -108,9 +109,16 @@ export default async function LeadDetailPage({
             </div>
 
             <div className="action-group">
-              <Link href={`/dashboard/quotes/new?lead=${lead.id}`} className="action-link-button">
-                Create Quote →
-              </Link>
+              {lead.converted_client_id ? (
+                <Link
+                  href={`/dashboard/quotes/new?client=${lead.converted_client_id}`}
+                  className="action-link-button"
+                >
+                  Create Quote →
+                </Link>
+              ) : (
+                <p className="text-gray-400">Convert this lead to a client to create a quote.</p>
+              )}
             </div>
 
             <div className="action-group">
@@ -123,6 +131,17 @@ export default async function LeadDetailPage({
                   <input type="hidden" name="leadId" value={lead.id} />
                   <button type="submit" className="reject-button">
                     Reject Lead
+                  </button>
+                </form>
+              </div>
+            )}
+
+            {lead.status === "rejected" && (profile.role === "OWNER" || profile.role === "ADMIN") && (
+              <div className="action-group">
+                <form action={deleteLeadAction} className="reject-form">
+                  <input type="hidden" name="leadId" value={lead.id} />
+                  <button type="submit" className="reject-button">
+                    Delete Lead
                   </button>
                 </form>
               </div>

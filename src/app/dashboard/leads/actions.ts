@@ -69,3 +69,27 @@ export async function createLeadAction(formData: FormData) {
   redirect("/dashboard/leads?created=lead");
 }
 
+export async function deleteLeadAction(formData: FormData) {
+  const { supabase, profile } = await getSessionProfile();
+
+  if (!supabase || !profile) {
+    redirect("/login");
+  }
+
+  if (profile.role !== "OWNER" && profile.role !== "ADMIN") {
+    return;
+  }
+
+  const leadId = String(formData.get("leadId") || "").trim();
+
+  if (!leadId) {
+    return;
+  }
+
+  // Scoped to rejected leads only - this is a cleanup action, not general deletion.
+  await supabase.from("leads").delete().eq("id", leadId).eq("status", "rejected");
+
+  revalidatePath("/dashboard/leads");
+  redirect("/dashboard/leads");
+}
+

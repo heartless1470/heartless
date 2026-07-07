@@ -111,6 +111,7 @@ export default async function LeadsPage({
             created_at: lead.created_at,
             employees: lead.employees,
           }))}
+          canDelete={profile?.role === "OWNER" || profile?.role === "ADMIN"}
         />
       </article>
     </div>

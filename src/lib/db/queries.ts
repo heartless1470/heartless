@@ -214,6 +214,7 @@ export async function getLeadDetail(supabase: SupabaseClient, leadId: string) {
       created_at,
       updated_at,
       employee_id,
+      converted_client_id,
       employees (id, profiles (full_name))
     `,
     )
@@ -374,4 +375,31 @@ export async function getClientDetail(supabase: SupabaseClient, clientId: string
     projects: projects || [],
     invoices: invoices || [],
   };
+}
+
+/**
+ * Get all quotes
+ */
+export async function getQuotes(supabase: SupabaseClient) {
+  const { data, error } = await supabase
+    .from("quotes")
+    .select(
+      `
+      id,
+      quote_number,
+      total,
+      status,
+      notes,
+      created_at,
+      clients (id, business_name, name)
+    `,
+    )
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Failed to fetch quotes:", error);
+    return [];
+  }
+
+  return data || [];
 }
