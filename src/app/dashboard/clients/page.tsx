@@ -44,7 +44,7 @@ export default async function ClientsPage() {
                     {client.business_name}
                   </Link>
                 </div>
-                <div>{client.contact_person || "—"}</div>
+                <div>{client.name || "—"}</div>
                 <div>{client.email || "—"}</div>
                 <div>
                   <span className={`lead-status ${client.status}`}>{client.status}</span>

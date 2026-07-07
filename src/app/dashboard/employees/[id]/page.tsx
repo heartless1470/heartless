@@ -28,7 +28,7 @@ export default async function EmployeeDetailPage({
             ← Back to Employees
           </Link>
           <h1>{employee.full_name}</h1>
-          <p>@{employee.user_id}</p>
+          <p>@{employee.username}</p>
         </div>
         <span className={`lead-status ${employee.status}`}>{employee.status}</span>
       </div>
@@ -46,7 +46,7 @@ export default async function EmployeeDetailPage({
             <div>
               <label>Account</label>
               <p>
-                {employee.user_id ? `@${employee.user_id}` : "—"}
+                {employee.username ? `@${employee.username}` : "—"}
               </p>
             </div>
             <div>
@@ -60,12 +60,12 @@ export default async function EmployeeDetailPage({
               </p>
             </div>
             <div>
-              <label>Hire Date</label>
-              <p>{new Date(employee.hire_date).toLocaleDateString()}</p>
+              <label>Joined</label>
+              <p>{new Date(employee.created_at).toLocaleDateString()}</p>
             </div>
             <div>
-              <label>Commission Rate</label>
-              <p>${employee.commission_rate} per conversion</p>
+              <label>Commission</label>
+              <p>${employee.commission_flat_amount} per conversion</p>
             </div>
             <div>
               <label>Status</label>

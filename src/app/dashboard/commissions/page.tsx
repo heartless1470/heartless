@@ -24,13 +24,13 @@ export default async function CommissionsPage() {
             id,
             amount,
             status,
-            earned_date,
-            paid_date,
+            earned_at,
+            paid_at,
             clients (business_name)
           `
           )
           .eq("employee_id", employee.id)
-          .order("earned_date", { ascending: false });
+          .order("earned_at", { ascending: false });
 
         commissions = data || [];
       }
@@ -43,13 +43,13 @@ export default async function CommissionsPage() {
           id,
           amount,
           status,
-          earned_date,
-          paid_date,
-          employees (full_name),
+          earned_at,
+          paid_at,
+          employees (profiles (full_name)),
           clients (business_name)
         `
         )
-        .order("earned_date", { ascending: false });
+        .order("earned_at", { ascending: false });
 
       commissions = data || [];
     }
@@ -64,7 +64,7 @@ export default async function CommissionsPage() {
     .filter((c) => c.status === "pending")
     .reduce((sum, c) => sum + (c.amount || 0), 0);
   const approvedNotPaid = commissions
-    .filter((c) => c.status === "approved")
+    .filter((c) => c.status === "earned")
     .reduce((sum, c) => sum + (c.amount || 0), 0);
 
   return (
@@ -121,7 +121,7 @@ export default async function CommissionsPage() {
             {commissions.map((commission) => (
               <div key={commission.id} className="commissions-row">
                 {!isEmployee && (
-                  <div>{commission.employees?.full_name || "Unknown"}</div>
+                  <div>{commission.employees?.profiles?.full_name || "Unknown"}</div>
                 )}
                 <div>
                   {commission.clients?.business_name || "Unknown Client"}
@@ -132,10 +132,10 @@ export default async function CommissionsPage() {
                     {commission.status}
                   </span>
                 </div>
-                <div>{new Date(commission.earned_date).toLocaleDateString()}</div>
+                <div>{new Date(commission.earned_at).toLocaleDateString()}</div>
                 <div>
-                  {commission.paid_date
-                    ? new Date(commission.paid_date).toLocaleDateString()
+                  {commission.paid_at
+                    ? new Date(commission.paid_at).toLocaleDateString()
                     : "—"}
                 </div>
 
@@ -150,7 +150,7 @@ export default async function CommissionsPage() {
                   </div>
                 )}
 
-                {!isEmployee && commission.status === "approved" && (
+                {!isEmployee && commission.status === "earned" && (
                   <div>
                     <form action={markPaidAction} style={{ display: "inline" }}>
                       <input type="hidden" name="commissionId" value={commission.id} />

@@ -125,10 +125,9 @@ export async function convertLeadToClientAction(formData: FormData) {
   const { data: client, error: clientError } = await supabase
     .from("clients")
     .insert({
-      lead_id: leadId,
-      referred_by_employee: lead.employee_id,
+      referred_by_employee_id: lead.employee_id,
       business_name: businessName,
-      contact_person: contactPerson,
+      name: contactPerson,
       phone: lead.phone,
       email: lead.email,
       status: "active",
@@ -143,7 +142,7 @@ export async function convertLeadToClientAction(formData: FormData) {
   // Update lead status
   const { error: updateError } = await supabase
     .from("leads")
-    .update({ status: "converted" })
+    .update({ status: "converted", converted_client_id: client.id })
     .eq("id", leadId);
 
   if (updateError) {

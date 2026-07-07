@@ -17,7 +17,7 @@ export async function createCommissionForConvertedLead(
   // Get employee name for logging
   const { data: employee } = await supabase
     .from("employees")
-    .select("full_name")
+    .select("profiles (full_name)")
     .eq("id", employeeId)
     .single();
 
@@ -32,7 +32,7 @@ export async function createCommissionForConvertedLead(
       project_id: projectId || null,
       amount: DEFAULT_COMMISSION_AMOUNT,
       status: "pending",
-      earned_date: new Date().toISOString().split("T")[0], // Today's date
+      earned_at: new Date().toISOString(),
     })
     .select()
     .single();
@@ -43,12 +43,14 @@ export async function createCommissionForConvertedLead(
   }
 
   // Log activity
+  const employeeName = (employee.profiles as any)?.full_name || "Unknown";
+
   await logCommissionActivity(
     supabase,
     userId,
     ACTIVITY_MESSAGES.COMMISSION_CREATED,
     commission.id,
-    employee.full_name,
+    employeeName,
     DEFAULT_COMMISSION_AMOUNT,
     { lead_id: leadId, client_id: clientId },
   );
@@ -66,14 +68,14 @@ export async function approveCommission(
 ) {
   const { data: commission, error } = await supabase
     .from("commissions")
-    .update({ status: "approved" })
+    .update({ status: "earned" })
     .eq("id", commissionId)
     .select(
       `
       id,
       employee_id,
       amount,
-      employees (full_name)
+      employees (profiles (full_name))
     `,
     )
     .single();
@@ -84,11 +86,8 @@ export async function approveCommission(
   }
 
   // Log activity
-  const employeeName =
-    commission.employees && typeof commission.employees === 'object' && 'full_name' in commission.employees
-      ? (commission.employees as any).full_name
-      : "Unknown";
-  
+  const employeeName = (commission.employees as any)?.profiles?.full_name || "Unknown";
+
   await logCommissionActivity(
     supabase,
     userId,
@@ -109,18 +108,16 @@ export async function markCommissionAsPaid(
   userId: string,
   commissionId: string,
 ) {
-  const today = new Date().toISOString().split("T")[0];
-
   const { data: commission, error } = await supabase
     .from("commissions")
-    .update({ status: "paid", paid_date: today })
+    .update({ status: "paid", paid_at: new Date().toISOString() })
     .eq("id", commissionId)
     .select(
       `
       id,
       employee_id,
       amount,
-      employees (full_name)
+      employees (profiles (full_name))
     `,
     )
     .single();
@@ -131,11 +128,8 @@ export async function markCommissionAsPaid(
   }
 
   // Log activity
-  const employeeName =
-    commission.employees && typeof commission.employees === 'object' && 'full_name' in commission.employees
-      ? (commission.employees as any).full_name
-      : "Unknown";
-  
+  const employeeName = (commission.employees as any)?.profiles?.full_name || "Unknown";
+
   await logCommissionActivity(
     supabase,
     userId,
@@ -165,7 +159,7 @@ export async function cancelCommission(
       id,
       employee_id,
       amount,
-      employees (full_name)
+      employees (profiles (full_name))
     `,
     )
     .single();
@@ -176,11 +170,8 @@ export async function cancelCommission(
   }
 
   // Log activity
-  const employeeName =
-    commission.employees && typeof commission.employees === 'object' && 'full_name' in commission.employees
-      ? (commission.employees as any).full_name
-      : "Unknown";
-  
+  const employeeName = (commission.employees as any)?.profiles?.full_name || "Unknown";
+
   await logCommissionActivity(
     supabase,
     userId,
@@ -215,7 +206,7 @@ export async function getEmployeeCommissionSummary(
     .filter((c) => c.status === "pending")
     .reduce((sum, c) => sum + (c.amount || 0), 0);
   const approved = commissions
-    .filter((c) => c.status === "approved")
+    .filter((c) => c.status === "earned")
     .reduce((sum, c) => sum + (c.amount || 0), 0);
 
   return {
@@ -240,13 +231,13 @@ export async function getPendingCommissions(supabase: SupabaseClient) {
       client_id,
       amount,
       status,
-      earned_date,
-      employees (full_name),
+      earned_at,
+      employees (profiles (full_name)),
       clients (business_name)
     `,
     )
     .eq("status", "pending")
-    .order("earned_date", { ascending: false });
+    .order("earned_at", { ascending: false });
 
   return data || [];
 }

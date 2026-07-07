@@ -1,6 +1,19 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 
 /**
+ * employees has no full_name column of its own - names live on the linked
+ * profiles row. This flattens `employees.profiles.full_name` back to
+ * `employees.full_name` so callers can keep using the simple shape.
+ */
+function flattenLeadEmployee<T extends { employees?: any }>(lead: T): T {
+  const employee = lead.employees as { profiles?: { full_name?: string } } | null | undefined;
+  return {
+    ...lead,
+    employees: employee?.profiles ? { full_name: employee.profiles.full_name } : undefined,
+  };
+}
+
+/**
  * Dashboard queries for owner/admin
  */
 export async function getDashboardStatsOwner(supabase: SupabaseClient) {
@@ -9,18 +22,18 @@ export async function getDashboardStatsOwner(supabase: SupabaseClient) {
     .from("projects")
     .select("id", { count: "exact" })
     .neq("status", "completed");
-  const { data: monthlyInvoices } = await supabase
-    .from("invoices")
-    .select("amount_paid")
-    .eq("status", "paid")
-    .gte("paid_date", new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString());
+  const { data: monthlyPayments } = await supabase
+    .from("payments")
+    .select("amount")
+    .eq("status", "received")
+    .gte("received_at", new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString());
   const { data: commissions } = await supabase
     .from("commissions")
     .select("amount")
-    .eq("status", "approved")
-    .is("paid_date", null);
+    .eq("status", "earned")
+    .is("paid_at", null);
 
-  const monthlyRevenue = monthlyInvoices?.reduce((sum, inv) => sum + (inv.amount_paid || 0), 0) || 0;
+  const monthlyRevenue = monthlyPayments?.reduce((sum, p) => sum + (p.amount || 0), 0) || 0;
   const commissionOwed = commissions?.reduce((sum, c) => sum + (c.amount || 0), 0) || 0;
 
   return {
@@ -58,7 +71,7 @@ export async function getDashboardStatsEmployee(supabase: SupabaseClient, userId
   const { data: convertedClients } = await supabase
     .from("clients")
     .select("id", { count: "exact" })
-    .eq("referred_by_employee", employee.id);
+    .eq("referred_by_employee_id", employee.id);
 
   const { data: pendingCommissions } = await supabase
     .from("commissions")
@@ -99,13 +112,13 @@ export async function getRecentLeads(supabase: SupabaseClient, limit = 5) {
       status,
       created_at,
       employee_id,
-      employees (full_name)
+      employees (profiles (full_name))
     `,
     )
     .order("created_at", { ascending: false })
     .limit(limit);
 
-  return data || [];
+  return (data || []).map(flattenLeadEmployee);
 }
 
 /**
@@ -152,7 +165,7 @@ export async function getLeads(
     status,
     created_at,
     employee_id,
-    employees (full_name)
+    employees (profiles (full_name))
   `,
   );
 
@@ -174,8 +187,12 @@ export async function getLeads(
     query = query.range(options.offset, options.offset + (options.limit || 10) - 1);
   }
 
-  const { data } = await query;
-  return data || [];
+  const { data, error } = await query;
+  if (error) {
+    console.error("Failed to fetch leads:", error);
+    return [];
+  }
+  return (data || []).map(flattenLeadEmployee);
 }
 
 /**
@@ -198,7 +215,7 @@ export async function getLeadDetail(supabase: SupabaseClient, leadId: string) {
       created_at,
       updated_at,
       employee_id,
-      employees (id, full_name, email)
+      employees (id, profiles (full_name))
     `,
     )
     .eq("id", leadId)
@@ -220,7 +237,7 @@ export async function getLeadDetail(supabase: SupabaseClient, leadId: string) {
     .order("created_at", { ascending: false });
 
   return {
-    ...lead,
+    ...flattenLeadEmployee(lead),
     notes: leadNotes || [],
   };
 }
@@ -234,19 +251,26 @@ export async function getEmployees(supabase: SupabaseClient) {
     .select(
       `
       id,
-      full_name,
       phone,
-      email,
-      hire_date,
-      commission_rate,
+      commission_flat_amount,
       status,
-      created_at
+      created_at,
+      profiles (username, full_name, role)
     `,
     )
     .eq("status", "active")
-    .order("full_name");
+    .order("created_at");
 
-  return data || [];
+  return (data || []).map((employee: any) => ({
+    id: employee.id,
+    phone: employee.phone,
+    commission_flat_amount: employee.commission_flat_amount,
+    status: employee.status,
+    created_at: employee.created_at,
+    username: employee.profiles?.username,
+    full_name: employee.profiles?.full_name,
+    role: employee.profiles?.role,
+  }));
 }
 
 /**
@@ -255,7 +279,7 @@ export async function getEmployees(supabase: SupabaseClient) {
 export async function getEmployeeDetail(supabase: SupabaseClient, employeeId: string) {
   const { data: employee } = await supabase
     .from("employees")
-    .select("*")
+    .select("*, profiles (username, full_name, role)")
     .eq("id", employeeId)
     .single();
 
@@ -269,7 +293,7 @@ export async function getEmployeeDetail(supabase: SupabaseClient, employeeId: st
   const { data: clients } = await supabase
     .from("clients")
     .select("id", { count: "exact" })
-    .eq("referred_by_employee", employeeId);
+    .eq("referred_by_employee_id", employeeId);
 
   const { data: commissions } = await supabase
     .from("commissions")
@@ -284,6 +308,9 @@ export async function getEmployeeDetail(supabase: SupabaseClient, employeeId: st
 
   return {
     ...employee,
+    username: employee.profiles?.username,
+    full_name: employee.profiles?.full_name,
+    role: employee.profiles?.role,
     leadsCount: leads?.length || 0,
     convertedCount: clients?.length || 0,
     commissionEarned: earned,
@@ -300,12 +327,12 @@ export async function getClients(supabase: SupabaseClient, limit?: number) {
     `
     id,
     business_name,
-    contact_person,
+    name,
     phone,
     email,
     status,
     created_at,
-    referred_by_employee
+    referred_by_employee_id
   `,
   );
 

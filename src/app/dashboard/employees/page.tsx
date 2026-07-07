@@ -95,7 +95,7 @@ export default async function EmployeesPage() {
                   <strong>{employee.full_name}</strong>
                   <span>@{employee.username || "unknown"}</span>
                 </div>
-                <div>{employee.email || employee.phone || "—"}</div>
+                <div>{employee.phone || "—"}</div>
                 <div>
                   <span className="role-badge">{employee.role}</span>
                 </div>
