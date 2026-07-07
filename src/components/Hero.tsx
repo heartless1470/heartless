@@ -98,7 +98,7 @@ export default function Hero() {
           transition: "opacity 0.7s 0.3s, transform 0.7s 0.3s",
         }}
       >
-        I build high-converting websites for small businesses — fast, animated, and SEO-ready. One new customer pays for the whole investment.
+        I build websites for businesses that need to look the part and actually bring in work. One new customer covers the cost.
       </p>
 
       {/* CTAs */}

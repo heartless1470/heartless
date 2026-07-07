@@ -11,7 +11,6 @@ function buildMailtoFromForm(formData: FormData) {
   const email = String(formData.get("email") || "").trim();
   const phone = String(formData.get("phone") || "").trim();
   const service = String(formData.get("service") || "").trim();
-  const budget = String(formData.get("budget") || "").trim();
   const timeline = String(formData.get("timeline") || "").trim();
   const message = String(formData.get("message") || "").trim();
 
@@ -25,7 +24,6 @@ function buildMailtoFromForm(formData: FormData) {
       `Email: ${email}`,
       `Phone: ${phone || "N/A"}`,
       `Service Needed: ${service}`,
-      `Budget Range: ${budget || "N/A"}`,
       `Timeline: ${timeline || "N/A"}`,
       "",
       "Project Details:",
@@ -132,12 +130,6 @@ export default function CTA() {
               name="service"
               placeholder="Service Needed *"
               required
-              style={{ border: "1px solid rgba(10,10,15,0.2)", borderRadius: 10, padding: "12px 14px", fontSize: 14 }}
-            />
-            <input
-              className="contact-input"
-              name="budget"
-              placeholder="Budget Range"
               style={{ border: "1px solid rgba(10,10,15,0.2)", borderRadius: 10, padding: "12px 14px", fontSize: 14 }}
             />
             <input

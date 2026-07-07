@@ -2,14 +2,14 @@
 import { useReveal } from "@/hooks/useReveal";
 
 const features = [
-  { icon: "🚀", label: "100 PageSpeed Score", desc: "Blazing fast load times, optimized assets." },
-  { icon: "📱", label: "Mobile-First", desc: "Perfect on every screen, every device." },
-  { icon: "🔍", label: "SEO Optimized", desc: "Meta, schema, sitemap — all done for you." },
-  { icon: "✨", label: "Custom Animations", desc: "Framer Motion & GSAP scroll effects." },
-  { icon: "🧩", label: "CMS Integration", desc: "Sanity, Contentful, or Webflow ready." },
-  { icon: "📊", label: "Analytics Setup", desc: "GA4, heatmaps, and event tracking." },
-  { icon: "📦", label: "Source Files", desc: "Full ownership of your code on delivery." },
-  { icon: "🛡️", label: "30-Day Revisions", desc: "We iterate until you're completely happy." },
+  { icon: "🚀", label: "100 PageSpeed Score", desc: "Loads fast on every connection including mobile data." },
+  { icon: "📱", label: "Mobile Design", desc: "Looks good on phones, tablets and desktops without any compromises." },
+  { icon: "🔍", label: "SEO Setup", desc: "Meta tags, schema and sitemap so Google can find and index your pages." },
+  { icon: "✨", label: "Custom Animations", desc: "Framer Motion and GSAP scroll effects built into every project." },
+  { icon: "🧩", label: "CMS Integration", desc: "Sanity, Contentful or Webflow so you can update content yourself." },
+  { icon: "📊", label: "Analytics Setup", desc: "GA4 and event tracking so you know where your visitors are coming from." },
+  { icon: "📦", label: "Source Files", desc: "You get full ownership of the code when the project is delivered." },
+  { icon: "🛡️", label: "30 Day Revisions", desc: "Changes and fixes for 30 days after launch at no extra cost." },
 ];
 
 export default function Features() {

@@ -2,10 +2,10 @@
 import { useReveal } from "@/hooks/useReveal";
 
 const steps = [
-  { n: "01", label: "Discovery", desc: "Free strategy call to understand your business, goals, and target customers." },
-  { n: "02", label: "Design", desc: "Custom Figma mockups tailored to your brand — presented for your feedback." },
-  { n: "03", label: "Build", desc: "I code your site in React/Next.js with animations, SEO, and mobile-first in mind." },
-  { n: "04", label: "Launch", desc: "Deployed, indexed, and live. 30-day revision window included, zero stress." },
+  { n: "01", label: "Discovery", desc: "Free call to understand your business, your customers and what you need the site to do." },
+  { n: "02", label: "Design", desc: "Custom mockups based on your brand sent over for feedback before anything gets built." },
+  { n: "03", label: "Build", desc: "I code the site in Next.js with animations, SEO setup and mobile layout done properly." },
+  { n: "04", label: "Launch", desc: "Deployed and live. Domain connected, sitemap submitted and 30 days for any changes." },
 ];
 
 export default function Process() {

@@ -10,7 +10,6 @@ import Work from "@/components/Work";
 import Process from "@/components/Process";
 import Pricing from "@/components/Pricing";
 import Features from "@/components/Features";
-import Testimonials from "@/components/Testimonials";
 import About from "@/components/About";
 import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
@@ -18,7 +17,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div style={{ background: "#0a0a0f", color: "#f0ede8", minHeight: "100vh" }}>
+    <div className="marketing-site" style={{ background: "#0a0a0f", color: "#f0ede8", minHeight: "100vh" }}>
       <StarField />
       <Cursor />
       <Navbar />
@@ -29,7 +28,6 @@ export default function Home() {
       <Process />
       <Pricing />
       <Features />
-      <Testimonials />
       <About />
       <FAQ />
       <CTA />

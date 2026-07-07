@@ -5,32 +5,32 @@ const services = [
   {
     icon: "⚡",
     title: "Landing Pages",
-    desc: "High-converting single-page sites built to turn visitors into customers. Fast, beautiful, and SEO-ready from day one.",
+    desc: "Single page websites built to get you more calls, orders and enquiries. Fast to load and built to look sharp.",
   },
   {
     icon: "🛒",
     title: "Multi-Page Sites",
-    desc: "Professional brochure and service websites with clear structure, strong messaging, and pages built to move visitors toward booking or enquiry.",
+    desc: "Full business websites with a clear layout and pages that guide visitors toward booking or contacting you.",
   },
   {
     icon: "🔍",
-    title: "SEO Optimization",
-    desc: "Schema markup, meta tags, sitemaps, Core Web Vitals — everything Google needs to rank your site higher.",
+    title: "SEO Setup",
+    desc: "Page titles, meta tags, sitemaps and the technical setup Google needs to find and rank your site.",
   },
   {
     icon: "✨",
     title: "Scroll Animations",
-    desc: "Buttery smooth Framer Motion and GSAP animations that make your site feel premium and modern without sacrificing performance.",
+    desc: "Framer Motion and GSAP animations that make your site feel like it cost a lot more than it did.",
   },
   {
     icon: "📱",
-    title: "Mobile-First Design",
-    desc: "Every site looks and works perfectly on all screen sizes. Mobile visitors aren't an afterthought — they're the priority.",
+    title: "Mobile Design",
+    desc: "Every site looks and works properly on phones and tablets. Most of your visitors are on mobile so this gets full attention.",
   },
   {
     icon: "🧩",
     title: "CMS Integration",
-    desc: "Sanity, Contentful, or Webflow so you can update your own content without touching a line of code.",
+    desc: "Sanity, Contentful or Webflow so you can update your own content without needing a developer every time.",
   },
 ];
 

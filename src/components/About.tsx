@@ -52,8 +52,8 @@ function SkillBar({ label, pct }: { label: string; pct: number }) {
 }
 
 const stats = [
-  { n: "87+", label: "projects delivered" },
-  { n: "100", label: "PageSpeed score" },
+  { n: "Est.", label: "2025" },
+  { n: "100", label: "PageSpeed target" },
   { n: "4hrs", label: "avg. response time" },
   { n: "7d", label: "avg. delivery time" },
 ];
@@ -84,10 +84,10 @@ export default function About() {
             I build sites that <span style={{ color: "#c8f545" }}>pay for themselves.</span>
           </h2>
           <p style={{ color: "#7a7a8c", fontSize: 15, lineHeight: 1.8, marginBottom: 32 }}>
-              I&apos;m a full-stack web developer specializing in small business websites. I&apos;ve helped restaurants, law firms, clinics, and real estate agents build an online presence that actually converts visitors into paying customers — not just a pretty brochure.
+              I build websites for businesses that need a proper online presence. Past clients include bakeries, flooring companies, pharmacies, contractors and building suppliers. The goal is always a site that looks credible and helps the business get more customers.
           </p>
           <p style={{ color: "#7a7a8c", fontSize: 15, lineHeight: 1.8, marginBottom: 40 }}>
-            Every site I build is fast, mobile-first, SEO-ready, and animated by design — not as a bonus.
+            Every site is fast, built for mobile, set up for SEO and comes with animations as standard.
           </p>
 
           {/* Stats */}

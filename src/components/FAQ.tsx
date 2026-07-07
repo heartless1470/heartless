@@ -4,32 +4,36 @@ import { useReveal } from "@/hooks/useReveal";
 
 const faqs = [
   {
-    q: "How long does it actually take to build a website?",
-    a: "Most sites are live in 7 days from the moment I have all your content and branding. Larger custom builds can take 10–14 days. I'll give you a specific timeline on our strategy call.",
+    q: "How long does it take to build a website?",
+    a: "A landing page usually takes 3 to 7 days once your content is ready. Standard business websites take 1 to 3 weeks. Advanced builds and redesigns depend on the number of pages, how much content needs to be organised and how many rounds of feedback there are.",
   },
   {
     q: "Do I need to know how to code or design?",
-    a: "Not at all. I handle everything — design, development, SEO, and launch. If you have a logo and brand colors, great. If not, I offer branding add-ons to get you sorted.",
+    a: "No. I handle the design, development, mobile layout, SEO setup, launch and domain connection. If you already have a logo, brand colours, photos or written content that helps the project move faster.",
   },
   {
-    q: "What if I want to update the site myself after launch?",
-    a: "The Pro plan includes CMS integration (like Sanity or Contentful) so you can update text, images, and blog posts without touching code. Starter can add CMS as an add-on.",
+    q: "What packages are available?",
+    a: "Current packages are: Basic Landing Page, Standard Business Website, Advanced Business Website and Website Redesign. Each one shows the intro price, a JMD estimate and the original target range on the pricing cards.",
   },
   {
-    q: "Will my site actually rank on Google?",
-    a: "I implement technical SEO (meta tags, schema markup, sitemaps, robots.txt, Core Web Vitals) on every site. That gives you a strong foundation — long-term rankings depend on your content and backlinks too.",
+    q: "Will my site rank on Google?",
+    a: "Every site includes page titles, descriptions, a sitemap and the technical setup Google needs. Long term ranking depends on your content, your competition and how often the site gets updated.",
   },
   {
     q: "What do you need from me to get started?",
-    a: "Business name, what you do, who your customers are, any existing logo/colors, and your site goals. That's it. We cover everything else on the strategy call.",
+    a: "Your business name, what you offer, who your customers are, the package you want, your contact details and WhatsApp number. Photos or brand assets help but are not required to start.",
   },
   {
     q: "Can I pay in installments?",
-    a: "Yes — I always do 50% upfront and 50% on delivery. This removes risk for you while keeping the project moving. No full upfront required.",
+    a: "Yes. The standard terms are 50% upfront before work starts and 50% on delivery before handover.",
   },
   {
-    q: "Is hosting and the domain included?",
-    a: "I include setup, launch, SSL, and connecting your domain to the site. Hosting and domain renewal costs are separate so you keep ownership and control. Typical hosting starts around $20/month and a .com domain is usually $12-25/year.",
+    q: "What are the monthly costs?",
+    a: "Managed hosting is $25 per month when needed. Database support is $25 per month when needed. Rush delivery is $99. Domain name is included as long as the domain you want is available.",
+  },
+  {
+    q: "Why are testimonials not showing?",
+    a: "They will be added back through the client portal so reviews come from real clients who went through the actual process rather than placeholders.",
   },
 ];
 
@@ -75,7 +79,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
       </button>
       <div
         style={{
-          maxHeight: open ? 300 : 0,
+          maxHeight: open ? 340 : 0,
           overflow: "hidden",
           transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
         }}

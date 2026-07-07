@@ -3,43 +3,74 @@ import { useReveal } from "@/hooks/useReveal";
 
 const plans = [
   {
-    name: "Starter",
-    project: 299,
-    desc: "For solo entrepreneurs and new businesses that need a clean, fast site.",
+    name: "Basic Landing Page",
+    original: "US$250 - US$400",
+    intro: "US$180 - US$300",
+    jmd: "J$28,500 - J$47,700",
+    desc: "Good starting point for small businesses that need a clean online presence without a large budget.",
     features: [
-      "Up to 5 pages",
-      "Mobile-first design",
-      "Basic SEO setup",
-      "Contact form",
-      "Free strategy call",
-      "7-day delivery",
-      "30-day revisions",
+      "One-page website",
+      "Mobile-friendly design",
+      "WhatsApp/email button",
+      "Basic sections",
+      "Simple SEO setup",
     ],
-    cta: "Get Started",
     highlight: false,
   },
   {
-    name: "Pro",
-    project: 399,
-    desc: "The most popular choice. Gets you animations, SEO, CMS, and everything you need to compete.",
+    name: "Standard Business Website",
+    subtitle: "4-6 pages",
+    original: "US$500 - US$900",
+    intro: "US$425 - US$650",
+    jmd: "J$67,600 - J$103,400",
+    desc: "The most common package. A proper business website with everything a small business needs to look credible and get enquiries.",
     features: [
-      "Up to 10 pages",
-      "Scroll animations",
-      "Full SEO optimization",
-      "CMS integration",
-      "Analytics + heatmap",
-      "Free strategy call",
-      "7-day delivery",
-      "30-day revisions",
+      "Home, About, Services, Contact",
+      "Gallery/Product Showcase or FAQ",
+      "Mobile-friendly design",
+      "Basic SEO setup",
+      "Launch support",
     ],
-    cta: "Contact Form",
     highlight: true,
+  },
+  {
+    name: "Advanced Business Website",
+    subtitle: "7-12 pages",
+    original: "US$900 - US$1,500",
+    intro: "US$750 - US$1,100",
+    jmd: "J$119,300 - J$175,000",
+    desc: "For businesses that need more pages and a more detailed site structure.",
+    features: [
+      "7-12 page structure",
+      "Multiple service/product pages",
+      "Stronger content organization",
+      "Advanced launch support",
+      "Scalable site foundation",
+    ],
+    highlight: false,
+  },
+  {
+    name: "Website Redesign",
+    original: "US$400 - US$1,200",
+    intro: "US$350 - US$850",
+    jmd: "J$55,700 - J$135,200",
+    desc: "For businesses that already have a site but need it updated, improved or fully rebuilt.",
+    features: [
+      "Light refresh or full rebuild",
+      "Improved layout",
+      "Better mobile experience",
+      "Content restructuring",
+      "Cleaner contact routes",
+    ],
+    highlight: false,
+    landscape: true,
   },
 ];
 
 const addons = [
-  { label: "Managed Hosting", price: "$20/mo" },
-  { label: "Domain Name", price: "$12-25/yr" },
+  { label: "Managed Hosting", price: "$25/mo" },
+  { label: "Database", price: "$25/mo" },
+  { label: "Domain Name", price: "Included if available" },
   { label: "Rush Delivery", price: "$99" },
 ];
 
@@ -67,21 +98,19 @@ export default function Pricing() {
           Small business friendly <span style={{ color: "#c8f545" }}>investments.</span>
         </h2>
         <p style={{ color: "#7a7a8c", fontSize: 15, marginBottom: 32 }}>
-          One new customer from your site pays for the whole package.
+          Intro pricing for Jamaica and the wider Caribbean market.
         </p>
-
         <p style={{ color: "#7a7a8c", fontSize: 14, marginBottom: 48 }}>
-          One-time project pricing. No monthly commitment.
+          Original rates are shown next to the current intro prices.
         </p>
       </div>
 
-      {/* Cards */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           gap: 20,
-          alignItems: "start",
+          alignItems: "stretch",
         }}
       >
         {plans.map((p) => (
@@ -95,6 +124,11 @@ export default function Pricing() {
               padding: 32,
               position: "relative",
               transition: "transform 0.25s",
+              display: "grid",
+              gridTemplateColumns: p.landscape ? "minmax(0, 1fr) minmax(280px, 0.78fr)" : "1fr",
+              gap: p.landscape ? 28 : 0,
+              alignItems: p.landscape ? "center" : "stretch",
+              gridColumn: p.landscape ? "1 / -1" : undefined,
             }}
             onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(-6px)"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
@@ -117,77 +151,91 @@ export default function Pricing() {
                   whiteSpace: "nowrap",
                 }}
               >
-                MOST POPULAR
+                MAIN OFFER
               </div>
             )}
-            <h3
-              style={{
-                fontWeight: 800,
-                fontSize: 18,
-                margin: "0 0 8px",
-                color: p.highlight ? "#0a0a0f" : "#f0ede8",
-              }}
-            >
-              {p.name}
-            </h3>
-            <div
-              style={{
-                fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-                fontWeight: 900,
-                letterSpacing: "-0.04em",
-                color: p.highlight ? "#0a0a0f" : "#f0ede8",
-                lineHeight: 1,
-                marginBottom: 4,
-              }}
-            >
-              ${p.project}
+
+            <div>
+              <h3
+                style={{
+                  fontWeight: 800,
+                  fontSize: 18,
+                  margin: "0 0 8px",
+                  color: p.highlight ? "#0a0a0f" : "#f0ede8",
+                }}
+              >
+                {p.name}
+              </h3>
+              {p.subtitle && (
+                <div style={{ color: p.highlight ? "#0a0a0f" : "#c8f545", fontSize: 12, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>
+                  {p.subtitle}
+                </div>
+              )}
+              <div
+                style={{
+                  fontSize: p.landscape ? "clamp(2.6rem, 7vw, 5.2rem)" : "clamp(1.9rem, 4vw, 2.8rem)",
+                  fontWeight: 900,
+                  letterSpacing: "-0.04em",
+                  color: p.highlight ? "#0a0a0f" : "#f0ede8",
+                  lineHeight: 0.95,
+                  marginBottom: 10,
+                }}
+              >
+                {p.intro}
+              </div>
+              <div style={{ color: p.highlight ? "#0a0a0f" : "#c8f545", fontSize: 13, fontWeight: 800, marginBottom: 8 }}>
+                {p.jmd}
+              </div>
+              <div style={{ color: p.highlight ? "#0a0a0f" : "#7a7a8c", fontSize: 12, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 12 }}>
+                {p.original}
+              </div>
+              <p style={{ color: p.highlight ? "#0a0a0f" : "#7a7a8c", fontSize: 13, lineHeight: 1.6, margin: 0, maxWidth: p.landscape ? 520 : undefined }}>
+                {p.desc}
+              </p>
             </div>
-            <div style={{ color: p.highlight ? "#0a0a0f" : "#7a7a8c", fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>
-              Per project
+
+            <div style={{ display: "flex", flexDirection: "column", minHeight: "100%" }}>
+              <ul style={{ listStyle: "none", margin: "0 0 28px", padding: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+                {p.features.map((f) => (
+                  <li
+                    key={f}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      fontSize: 14,
+                      color: p.highlight ? "#0a0a0f" : "#f0ede8",
+                    }}
+                  >
+                    <span style={{ color: p.highlight ? "#0a0a0f" : "#c8f545", fontWeight: 700 }}>✓</span> {f}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#contact"
+                style={{
+                  display: "block",
+                  textAlign: "center",
+                  padding: "14px",
+                  borderRadius: 10,
+                  fontWeight: 700,
+                  fontSize: 15,
+                  textDecoration: "none",
+                  background: p.highlight ? "#0a0a0f" : "#c8f545",
+                  color: p.highlight ? "#c8f545" : "#0a0a0f",
+                  transition: "opacity 0.2s",
+                  marginTop: "auto",
+                }}
+              >
+                {p.landscape ? "Plan My Redesign" : "Start This Package"}
+              </a>
             </div>
-            <p style={{ color: p.highlight ? "#0a0a0f" : "#7a7a8c", fontSize: 13, marginBottom: 24, lineHeight: 1.6 }}>
-              {p.desc}
-            </p>
-            <ul style={{ listStyle: "none", margin: "0 0 28px", padding: 0, display: "flex", flexDirection: "column", gap: 10 }}>
-              {p.features.map((f) => (
-                <li
-                  key={f}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                    fontSize: 14,
-                    color: p.highlight ? "#0a0a0f" : "#f0ede8",
-                  }}
-                >
-                  <span style={{ color: p.highlight ? "#0a0a0f" : "#c8f545", fontWeight: 700 }}>✓</span> {f}
-                </li>
-              ))}
-            </ul>
-            <a
-              href="#contact"
-              style={{
-                display: "block",
-                textAlign: "center",
-                padding: "14px",
-                borderRadius: 10,
-                fontWeight: 700,
-                fontSize: 15,
-                textDecoration: "none",
-                background: p.highlight ? "#0a0a0f" : "#c8f545",
-                color: p.highlight ? "#c8f545" : "#0a0a0f",
-                transition: "opacity 0.2s",
-              }}
-            >
-              {p.cta}
-            </a>
           </div>
         ))}
       </div>
 
-      {/* Add-ons */}
       <div style={{ marginTop: 48, textAlign: "center" }}>
-        <p style={{ color: "#7a7a8c", fontSize: 14, marginBottom: 16 }}>Add-on services</p>
+        <p style={{ color: "#7a7a8c", fontSize: 14, marginBottom: 16 }}>Add-ons</p>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 12 }}>
           {addons.map((a) => (
             <div
@@ -210,10 +258,10 @@ export default function Pricing() {
           ))}
         </div>
         <p style={{ color: "#7a7a8c", fontSize: 13, maxWidth: 720, margin: "20px auto 0", lineHeight: 1.7 }}>
-          Hosting and domain are billed separately. I include setup, launch, SSL, and connecting everything for you, but the recurring provider costs stay in your name.
+          Hosting and database are billed monthly when needed. Domain name is included as long as the domain you want is available.
         </p>
         <p style={{ color: "#7a7a8c", fontSize: 13, marginTop: 20 }}>
-          50% upfront · 50% on delivery · I reply within 4 hours
+          50% upfront · 50% on delivery · Reply within 4 hours
         </p>
       </div>
     </section>
