@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Studio Dashboard", robots: { index: 
 const areas = ["Leads", "Projects", "Milestones", "Tasks", "Files", "Approvals", "Support requests", "Payment status"];
 
 export default function StudioDashboardEntryPage() {
-  const configured = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+  const configured = process.env.BETTER_AUTH_ENABLED === "true";
   return (
     <main className="access-page studio-entry">
       <header className="access-nav"><BrandMark /><Link href="/">Back to website</Link></header>
@@ -22,7 +22,10 @@ export default function StudioDashboardEntryPage() {
           {configured ? (
             <Link className="button" href="/login">Open secure Studio Dashboard</Link>
           ) : (
-            <div className="access-status"><span />Studio Dashboard sign-in is currently unavailable.</div>
+            <>
+              <div className="access-status"><span />Secure owner sign-in is being activated. No account or password is available yet.</div>
+              <Link className="button button-secondary" href="/login">View access status</Link>
+            </>
           )}
         </div>
         <div className="access-panel">

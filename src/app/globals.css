@@ -362,6 +362,18 @@ svg {
   line-height: 1.7;
 }
 
+.auth-setup-status {
+  background: rgba(200, 245, 69, 0.04);
+  border: 1px solid rgba(200, 245, 69, 0.24);
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.auth-setup-status strong { color: #f0ede8; }
+.auth-setup-status p { color: #8c9aaf; line-height: 1.6; margin: 0; }
+.auth-home-link { color: #c8f545; font-family: var(--font-code), monospace; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; }
+
 .auth-error {
   margin: 18px 0;
   border: 1px solid rgba(255, 95, 87, 0.4);
