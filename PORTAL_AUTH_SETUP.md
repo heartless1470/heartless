@@ -52,3 +52,9 @@ user-editable `user_metadata`, and never expose a Supabase service-role key to t
 8. Only after these checks pass, replace the public access-request state with the live invitation sign-in flow.
 
 Reference the current Supabase Auth and RLS documentation during implementation; the platform changes frequently.
+
+## Later enhancement
+
+- Discord webhook notifications may be considered for internal operational alerts after the authenticated
+  portal and audit controls are live. They are intentionally out of scope for the current release and must
+  not transmit client files, private project content, credentials, or other sensitive data.
