@@ -46,7 +46,7 @@ export default async function DashboardLayout({
     <DashboardShell
       role={profile.role}
       username={profile.username}
-      title="Dashboard"
+      title="Studio Dashboard"
     >
       {children}
     </DashboardShell>

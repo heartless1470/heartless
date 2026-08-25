@@ -19,12 +19,13 @@ export default async function LoginPage({
     <main className="portal-auth-page">
       <section className="auth-card">
         <Link href="/" className="auth-brand">
-          astrocodestudio<span>.</span>
+          Astro<span>Codes</span>
         </Link>
-        <p className="auth-kicker">Owner, admin, and employee portal</p>
-        <h1>Sign in with username</h1>
+        <p className="auth-kicker">Studio Dashboard</p>
+        <h1>Internal studio sign in</h1>
         <p className="auth-copy">
-          Usernames are created by the owner. Passwords can be changed later from account settings.
+          This access point is for authorized AstroCodes studio accounts. Client portal access is separate
+          and invitation-based.
         </p>
 
         {errorMessage && <div className="auth-error">{errorMessage}</div>}

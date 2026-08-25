@@ -26,16 +26,7 @@ const projects = [
     stat: "Live Project",
     color: "#f545c8",
     image: "/rxessential.png",
-    href: "#",
-    size: "small",
-  },
-  {
-    title: "Contractor Supplier",
-    category: "Building Materials Website",
-    stat: "Live Project",
-    color: "#f5a545",
-    image: "/contractor.png",
-    href: "#",
+    href: "https://www.rxessentialsja.com",
     size: "small",
   },
 ];
@@ -171,11 +162,6 @@ export default function Work() {
         <div className="work-grid-right">
           <Card p={projects[1]} />
           <Card p={projects[2]} />
-        </div>
-        <div className="work-grid-bottom">
-          <div style={{ gridColumn: "1 / 3" }}>
-            <Card p={projects[3]} />
-          </div>
         </div>
       </div>
     </section>

@@ -1,0 +1,21 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import BrandMark from "@/components/site/BrandMark";
+
+export const metadata: Metadata = { title: "Privacy" };
+
+export default function PrivacyPage() {
+  return (
+    <main className="legal-page">
+      <header className="access-nav"><BrandMark /><Link href="/">Back to website</Link></header>
+      <article>
+        <p className="eyebrow">Privacy summary</p><h1>Clear handling of project information.</h1>
+        <p>Last updated August 25, 2026.</p>
+        <h2>Information you choose to share</h2><p>The public project brief opens your email application. AstroCodes does not store that form content on this website. Information you send by email is used to evaluate and respond to your enquiry.</p>
+        <h2>Site measurement</h2><p>The site uses Vercel Analytics and Speed Insights to understand aggregate usage and performance. These services may process technical request information according to Vercel’s policies.</p>
+        <h2>Client and studio access</h2><p>Secure project data will only be collected after an authenticated client portal is configured. Client access will be invitation-based and restricted to assigned project records. AstroCodes will not use shared client credentials.</p>
+        <h2>Questions</h2><p>Contact <a href="mailto:astrocodestudio@gmail.com">astrocodestudio@gmail.com</a> about privacy or project information.</p>
+      </article>
+    </main>
+  );
+}

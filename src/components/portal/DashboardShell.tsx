@@ -36,7 +36,7 @@ export default function DashboardShell({ role, username, title, children }: Dash
     <main className="backend-shell">
       <aside className="backend-sidebar">
         <Link href="/" className="backend-brand">
-          astrocodestudio<span>.</span>
+          Astro<span>Codes</span>
         </Link>
         <div className="backend-user">
           <strong>{username}</strong>
@@ -56,7 +56,7 @@ export default function DashboardShell({ role, username, title, children }: Dash
       <section className="backend-main">
         <div className="backend-topbar">
           <div>
-            <p>AstroCode backend</p>
+            <p>AstroCodes internal operations</p>
             <h1>{title}</h1>
           </div>
           <span>{role === "EMPLOYEE" ? "Employee access" : "Owner/Admin access"}</span>
