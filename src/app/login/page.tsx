@@ -2,7 +2,7 @@ import Link from "next/link";
 import { loginAction } from "./actions";
 
 const errors: Record<string, string> = {
-  "missing-env": "Supabase environment variables are not configured yet.",
+  "missing-env": "Studio sign-in is temporarily unavailable.",
   "invalid-username": "Enter the username created by the owner.",
   "invalid-login": "Username or password is incorrect.",
 };

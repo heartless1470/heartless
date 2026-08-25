@@ -8,12 +8,12 @@ export default async function InvoicesPage() {
     <div className="leads-container">
       <div className="backend-topbar">
         <h1>Invoices</h1>
-        <span>Coming soon</span>
+        <span>Not available yet</span>
       </div>
 
       <article className="backend-panel">
         <h2>Invoice Management</h2>
-        <p>Create, send, and track invoices. Mark payments and generate reports.</p>
+        <p>Invoice creation and payment tracking are not available yet. Client records remain available from the Clients section.</p>
 
         <div className="empty-state">
           <p>Invoices will appear here once you create them.</p>

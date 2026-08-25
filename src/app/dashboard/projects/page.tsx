@@ -8,12 +8,12 @@ export default async function ProjectsPage() {
     <div className="leads-container">
       <div className="backend-topbar">
         <h1>Projects</h1>
-        <span>Coming soon</span>
+        <span>Not available yet</span>
       </div>
 
       <article className="backend-panel">
         <h2>Project Management</h2>
-        <p>Manage all client projects here. Track status, progress, and deliverables.</p>
+        <p>Project tracking is not available yet. Client records remain available from the Clients section.</p>
 
         <div className="empty-state">
           <p>Projects will appear here once you create them from a client profile.</p>

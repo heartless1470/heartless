@@ -22,13 +22,13 @@ export default function StudioDashboardEntryPage() {
           {configured ? (
             <Link className="button" href="/login">Open secure Studio Dashboard</Link>
           ) : (
-            <div className="access-status"><span />Internal access is not enabled in this environment.</div>
+            <div className="access-status"><span />Studio Dashboard sign-in is currently unavailable.</div>
           )}
         </div>
         <div className="access-panel">
           <p className="eyebrow">Operational scope</p>
           <div className="scope-cloud">{areas.map((area) => <span key={area}>{area}</span>)}</div>
-          <p className="panel-note">Studio accounts require verified identities, role-based permissions, row-level database policies, and MFA in production.</p>
+          <p className="panel-note">Studio access is restricted to authorized accounts. Any replacement access model must pass verified identity, role, row-level access, and MFA checks before it can go live.</p>
         </div>
       </section>
     </main>

@@ -1,7 +1,8 @@
 import { getSessionProfile } from "@/lib/supabase/server";
 import { approveCommissionAction, markPaidAction } from "./actions";
 
-export default async function CommissionsPage() {
+export default async function CommissionsPage({ searchParams }: { searchParams: Promise<{ status?: string; employee?: string }> }) {
+  const { status, employee } = await searchParams;
   const { supabase, profile } = await getSessionProfile();
   const isEmployee = profile?.role === "EMPLOYEE";
 
@@ -45,7 +46,7 @@ export default async function CommissionsPage() {
           status,
           earned_at,
           paid_at,
-          employees (profiles (full_name)),
+          employees (id, profiles (full_name)),
           clients (business_name)
         `
         )
@@ -53,6 +54,14 @@ export default async function CommissionsPage() {
 
       commissions = data || [];
     }
+  }
+
+  if (status) {
+    commissions = commissions.filter((commission) => commission.status === status);
+  }
+
+  if (employee && !isEmployee) {
+    commissions = commissions.filter((commission) => commission.employees?.id === employee);
   }
 
   // Calculate totals
@@ -71,7 +80,7 @@ export default async function CommissionsPage() {
     <div className="leads-container">
       <div className="backend-topbar">
         <h1>{isEmployee ? "My Commissions" : "Commissions"}</h1>
-        <span>{commissions.length} commissions</span>
+        <span>{status ? `${commissions.length} ${status} commissions` : employee ? `${commissions.length} employee commissions` : `${commissions.length} commissions`}</span>
       </div>
 
       {/* Summary Stats */}

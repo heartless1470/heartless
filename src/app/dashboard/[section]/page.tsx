@@ -36,7 +36,7 @@ export default async function DashboardSectionPage({
   return (
     <EmptyPanel
       title={`${title} module`}
-      text="This route is scaffolded for Supabase data. The SQL schema and RLS policies define what each role can read and change."
+      text="This module is not available yet. Access stays closed until its data rules and role permissions are securely implemented and tested."
       items={
         section === "leads"
           ? ["new", "contacted", "quoted", "accepted", "rejected", "converted"]

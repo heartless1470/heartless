@@ -33,13 +33,13 @@ export default function Proof() {
             <h2>Proof is more useful than promises.</h2>
           </div>
           <p>
-            Each engagement starts with a different business context. The work below shows how we adapt
+            Each engagement starts with a different business context. The work below shows how I adapt
             the structure, presentation, and customer journey to fit it.
           </p>
         </div>
         <div className="proof-grid">
           {projects.map((project, index) => (
-            <a className="proof-card" href={project.href} target="_blank" rel="noreferrer" key={project.title}>
+            <a className="proof-card" href={project.href} target="_blank" rel="noopener noreferrer" key={project.title}>
               <div className="proof-media">
                 {project.image ? (
                   <Image

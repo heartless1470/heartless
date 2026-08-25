@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type IconName = "refresh" | "redesign" | "systems" | "care";
 
 function ServiceIcon({ name }: { name: IconName }) {
@@ -62,7 +64,7 @@ export default function Services() {
           <article className="service-card" id={service.id} key={service.title}>
             <div className="service-meta"><span className="service-number">{service.number}</span><ServiceIcon name={service.icon} /></div>
             <div><h3>{service.title}</h3><p className="service-summary">{service.summary}</p></div>
-            <p>{service.detail}</p>
+            <div className="service-detail"><p>{service.detail}</p><Link className="service-link" href="#brief">Discuss this service <span aria-hidden="true">→</span></Link></div>
           </article>
         ))}
       </div>

@@ -56,7 +56,7 @@ export default function BriefForm() {
           </p>
           <div className="expectation-card">
             <strong>What happens next</strong>
-            <ol><li>I review the brief.</li><li>I reply with useful next questions.</li><li>If there is a fit, we schedule discovery and confirm scope.</li></ol>
+            <ol><li>I review the brief.</li><li>I reply with useful next questions.</li><li>If there is a fit, I schedule discovery and confirm scope with you.</li></ol>
           </div>
         </div>
         <form className="brief-form" onSubmit={submitBrief}>
@@ -92,7 +92,7 @@ export default function BriefForm() {
             <legend>The outcome</legend>
             <label>What is not working today?<textarea name="problem" rows={4} required /></label>
             <label>What should be different when this succeeds?<textarea name="outcome" rows={4} required /></label>
-            <div className="form-actions"><button className="text-button" type="button" onClick={() => setStep(2)}>Back</button><button className="button" type="submit">Prepare email brief</button></div>
+            <div className="form-actions"><button className="text-button" type="button" onClick={() => setStep(2)}>Back</button><button className="button" type="submit">Email my project brief</button></div>
             <p className="form-note">Your information is not stored on this website. This button opens your email app with the brief pre-filled for review before sending.</p>
           </fieldset>
         </form>

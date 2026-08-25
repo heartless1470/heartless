@@ -38,7 +38,7 @@ export default async function DashboardPage() {
               label="Converted Clients"
               value={stats.convertedClients || 0}
               detail="Leads that became clients"
-              href="/dashboard/employees"
+              href="/dashboard/leads?status=converted"
               actionLabel="View"
             />
             <DashboardCard
@@ -60,14 +60,14 @@ export default async function DashboardPage() {
           <section className="dashboard-section">
             <h2>Quick Actions</h2>
             <div className="quick-actions">
-              <Link href="/dashboard/leads/new" className="action-button">
+              <Link href="/dashboard/leads#new-lead" className="action-button">
                 + Add New Lead
               </Link>
               <Link href="/dashboard/commissions" className="action-button">
                 View My Commissions
               </Link>
-              <Link href="/dashboard/employees" className="action-button">
-                View My Profile
+              <Link href="/dashboard/settings" className="action-button">
+                Account Settings
               </Link>
             </div>
           </section>
@@ -92,17 +92,17 @@ export default async function DashboardPage() {
             />
             <DashboardCard
               label="Pending Quotes"
-              value="0"
-              detail="Sent & awaiting response"
+              value="View quotes"
+              detail="Create and review client quotes"
               href="/dashboard/quotes"
               actionLabel="Follow Up"
             />
             <DashboardCard
               label="Unpaid Invoices"
-              value="0"
-              detail="Outstanding & due"
-              href="/dashboard/invoices?status=unpaid"
-              actionLabel="Collect"
+              value="Not available yet"
+              detail="Invoice tracking is not available yet"
+              href="/dashboard/invoices"
+              actionLabel="View status"
             />
           </DashboardCardGrid>
 
@@ -111,14 +111,14 @@ export default async function DashboardPage() {
               label="Monthly Revenue"
               value={`$${stats.monthlyRevenue || 0}`}
               detail="From paid invoices"
-              href="/dashboard/invoices?status=paid"
-              actionLabel="Details"
+              href="/dashboard/invoices"
+              actionLabel="View status"
             />
             <DashboardCard
               label="Employee Commissions Due"
               value={`$${stats.commissionOwed || 0}`}
               detail="Ready for payout"
-              href="/dashboard/commissions?status=approved"
+              href="/dashboard/commissions?status=earned"
               actionLabel="Process Payouts"
             />
             <DashboardCard

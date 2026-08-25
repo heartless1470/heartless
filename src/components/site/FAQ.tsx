@@ -1,7 +1,7 @@
 const questions = [
   {
     question: "What is the difference between a refresh and a redesign?",
-    answer: "A refresh improves a website with a sound structure. A redesign revisits the customer journey, page structure, messaging, visual system, and technical build together. We recommend the lighter option when it can achieve the goal.",
+    answer: "A refresh improves a website with a sound structure. A redesign revisits the customer journey, page structure, messaging, visual system, and technical build together. I recommend the lighter option when it can achieve the goal.",
   },
   {
     question: "How is a custom business system priced?",

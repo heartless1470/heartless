@@ -2,6 +2,16 @@ import { getSessionProfile } from "@/lib/supabase/server";
 import { getClientDetail } from "@/lib/db/queries";
 import Link from "next/link";
 
+function safeWebsiteUrl(value: string | null | undefined) {
+  if (!value) return null;
+  try {
+    const url = new URL(value);
+    return url.protocol === "http:" || url.protocol === "https:" ? url.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
 export default async function ClientDetailPage({
   params,
   searchParams,
@@ -22,6 +32,8 @@ export default async function ClientDetailPage({
   if (!client) {
     return <div>Client not found.</div>;
   }
+
+  const websiteUrl = safeWebsiteUrl(client.website);
 
   return (
     <div className="leads-detail-container">
@@ -77,8 +89,8 @@ export default async function ClientDetailPage({
             <div>
               <label>Website</label>
               <p>
-                {client.website ? (
-                  <a href={client.website} target="_blank" rel="noreferrer">
+                {websiteUrl ? (
+                  <a href={websiteUrl} target="_blank" rel="noopener noreferrer">
                     {client.website}
                   </a>
                 ) : (

@@ -11,9 +11,9 @@ const errors: Record<string, string> = {
 export default async function LeadsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; created?: string }>;
+  searchParams: Promise<{ error?: string; created?: string; status?: string; employee?: string }>;
 }) {
-  const { error, created } = await searchParams;
+  const { error, created, status, employee } = await searchParams;
   const errorMessage = error ? errors[error] || "Something went wrong." : null;
   const { supabase, profile } = await getSessionProfile();
 
@@ -29,11 +29,11 @@ export default async function LeadsPage({
         .single();
 
       if (employee) {
-        leads = await getLeads(supabase, { employeeId: employee.id });
+        leads = await getLeads(supabase, { employeeId: employee.id, status });
       }
     } else {
       // Get all leads for admin/owner
-      leads = await getLeads(supabase);
+      leads = await getLeads(supabase, { status, employeeId: employee });
     }
   }
 
@@ -41,10 +41,10 @@ export default async function LeadsPage({
     <div className="leads-container">
       <div className="backend-topbar">
         <h1>Leads</h1>
-        <span>{leads.length} leads</span>
+        <span>{status ? `${leads.length} ${status} leads` : employee ? `${leads.length} employee leads` : `${leads.length} leads`}</span>
       </div>
 
-      <article className="backend-panel">
+      <article className="backend-panel" id="new-lead">
         <h2>
           {profile?.role === "EMPLOYEE"
             ? "Submit a New Lead"

@@ -18,7 +18,7 @@ const ownerAdminNav = [
   ["Employees", "/dashboard/employees"],
   ["Commissions", "/dashboard/commissions"],
   ["Invoices", "/dashboard/invoices"],
-  ["Content", "/dashboard/content"],
+  ["Content (not available)", "/dashboard/content"],
   ["Settings", "/dashboard/settings"],
 ];
 
