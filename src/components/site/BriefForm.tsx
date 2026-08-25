@@ -49,14 +49,14 @@ export default function BriefForm() {
       <div className="section-frame brief-layout">
         <div className="brief-intro">
           <p className="eyebrow">Start with the business problem</p>
-          <h2>Tell us what needs to work better.</h2>
+          <h2>Tell me what needs to work better.</h2>
           <p>
             You do not need a technical specification. Share the situation, the outcome you want, and any
-            constraints. We will help define the right next step.
+            constraints. I will help define the right next step.
           </p>
           <div className="expectation-card">
             <strong>What happens next</strong>
-            <ol><li>We review the brief.</li><li>We reply with useful next questions.</li><li>If there is a fit, we schedule discovery and confirm scope.</li></ol>
+            <ol><li>I review the brief.</li><li>I reply with useful next questions.</li><li>If there is a fit, we schedule discovery and confirm scope.</li></ol>
           </div>
         </div>
         <form className="brief-form" onSubmit={submitBrief}>

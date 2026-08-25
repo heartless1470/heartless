@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const offers = [
   {
+    number: "01",
     name: "Website Refresh",
     usd: "From US$350",
     jmd: "From J$55,700",
@@ -9,14 +10,15 @@ const offers = [
     includes: ["Focused visual refresh", "Mobile and usability review", "Core page improvements", "Clearer conversion routes"],
   },
   {
+    number: "02",
     name: "Business Website Redesign",
     usd: "From US$750",
     jmd: "From J$119,300",
     description: "For businesses ready to rethink structure, messaging, design, and performance together.",
     includes: ["Strategy and content structure", "Custom responsive design", "Development and technical SEO", "Launch and handover support"],
-    featured: true,
   },
   {
+    number: "03",
     name: "Custom Business Systems",
     usd: "From US$1,500",
     jmd: "From J$230,000",
@@ -39,15 +41,16 @@ export default function Pricing() {
             timeline, revision allowance, payment schedule, and billing currency before work begins.
           </p>
         </div>
-        <div className="pricing-grid">
+        <div className="pricing-list">
           {offers.map((offer) => (
-            <article className={`price-card${offer.featured ? " featured" : ""}`} key={offer.name}>
-              {offer.featured ? <span className="price-label">Primary service</span> : null}
-              <h3>{offer.name}</h3>
+            <article className="price-row" key={offer.name}>
+              <span className="price-number">{offer.number}</span>
+              <div className="price-intro"><h3>{offer.name}</h3><p>{offer.description}</p></div>
               <div className="dual-price"><strong>{offer.usd}</strong><span>{offer.jmd}</span></div>
-              <p>{offer.description}</p>
-              <ul>{offer.includes.map((item) => <li key={item}>{item}</li>)}</ul>
-              <Link href="#brief">Discuss this service <span aria-hidden="true">→</span></Link>
+              <div className="price-details">
+                <ul>{offer.includes.map((item) => <li key={item}>{item}</li>)}</ul>
+                <Link href="#brief">Discuss this service <span aria-hidden="true">→</span></Link>
+              </div>
             </article>
           ))}
         </div>

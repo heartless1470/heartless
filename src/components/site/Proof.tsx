@@ -50,7 +50,7 @@ export default function Proof() {
                   />
                 ) : (
                   <div className="proof-placeholder" aria-hidden="true">
-                    <span>RX</span><i /><i /><i />
+                    <small>PHARMACY / WEB</small><span>RX</span><strong>ESSENTIALS</strong><i />
                   </div>
                 )}
                 <span className="proof-index">0{index + 1}</span>

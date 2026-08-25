@@ -37,7 +37,7 @@ export default function Navbar() {
             </Link>
           ))}
           <Link className="button button-small" href="#brief" onClick={() => setOpen(false)}>
-            Start a conversation
+            Start a project
           </Link>
         </div>
       </nav>

@@ -5,7 +5,12 @@ const portalItems = ["Project milestones", "Files and deliverables", "Approvals 
 export default function ClientExperience() {
   return (
     <section className="section-frame section-block portal-preview" id="portal">
-      <div className="portal-orbit" aria-hidden="true"><span /><span /><i /></div>
+      <div className="portal-diagram" aria-hidden="true">
+        <span className="diagram-label">CLIENT / PROJECT</span>
+        <div className="diagram-track"><i /><i /><i /><i /></div>
+        <strong>01:01</strong>
+        <span className="diagram-caption">VERIFIED ACCESS</span>
+      </div>
       <div className="portal-copy">
         <p className="eyebrow">A better client experience</p>
         <h2>One clear place to follow the work.</h2>

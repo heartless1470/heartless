@@ -3,30 +3,27 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section className="hero section-frame" id="top">
-      <div className="orbital-visual" aria-hidden="true">
-        <span className="orbit orbit-one" />
-        <span className="orbit orbit-two" />
-        <span className="orbit-node node-one" />
-        <span className="orbit-node node-two" />
-        <span className="orbit-core" />
+      <div className="hero-ruler" aria-hidden="true">
+        <span>00</span><i /><i /><i /><i /><i /><span>100</span>
       </div>
       <div className="hero-copy">
-        <p className="eyebrow"><span>Digital infrastructure</span> for growing businesses</p>
-        <h1>Your website should move your business forward.</h1>
+        <p className="eyebrow"><span>Web design</span> / business systems</p>
+        <h1>Websites that win clients on sight.</h1>
         <p className="hero-lede">
-          AstroCodes redesigns underperforming websites and builds tailored business systems that help
-          companies attract customers, manage work, and grow with confidence.
+          I redesign business websites that need to look the part and bring in work—and build private web
+          systems when the problem is happening behind the scenes.
         </p>
         <div className="button-row">
-          <Link className="button" href="#brief">Plan my website redesign</Link>
-          <Link className="button button-secondary" href="#systems">Discuss a business system</Link>
+          <Link className="button" href="#work">View work <span aria-hidden="true">→</span></Link>
+          <Link className="button button-secondary" href="#brief">Start a project</Link>
         </div>
         <dl className="hero-signals" aria-label="Service commitments">
-          <div><dt>Built around</dt><dd>Your business goals</dd></div>
-          <div><dt>Delivered as</dt><dd>Modern web experiences</dd></div>
-          <div><dt>Based in</dt><dd>Jamaica · working remotely</dd></div>
+          <div><dt>01 / Focus</dt><dd>Business outcomes first</dd></div>
+          <div><dt>02 / Delivery</dt><dd>Fast, maintainable web builds</dd></div>
+          <div><dt>03 / Base</dt><dd>Jamaica · working remotely</dd></div>
         </dl>
       </div>
+      <p className="hero-side-note" aria-hidden="true">SCROLL TO INSPECT / 2026</p>
     </section>
   );
 }
