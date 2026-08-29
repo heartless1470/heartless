@@ -19,6 +19,7 @@ const projects = [
     title: "RX Essentials",
     sector: "Pharmacy",
     href: "https://www.rxessentialsja.com",
+    image: "/rxessentials.png",
     focus: "Trust content, service navigation, and convenient mobile access.",
   },
 ];
