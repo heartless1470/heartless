@@ -26,12 +26,12 @@ const projects = [
 
 export default function Proof() {
   return (
-    <section className="proof-section section-block" id="work">
+    <section className="proof-section section-block" id="more-work">
       <div className="section-frame">
         <div className="section-heading split-heading">
           <div>
-            <p className="eyebrow">Selected work</p>
-            <h2>Proof is more useful than promises.</h2>
+            <p className="eyebrow">More selected work</p>
+            <h2>A different business. A different character.</h2>
           </div>
           <p>
             Each engagement starts with a different business context. The work below shows how I adapt
@@ -39,7 +39,7 @@ export default function Proof() {
           </p>
         </div>
         <div className="proof-grid">
-          {projects.map((project, index) => (
+          {projects.filter((project) => project.title !== "RX Essentials").map((project, index) => (
             <a className="proof-card" href={project.href} target="_blank" rel="noopener noreferrer" key={project.title}>
               <div className="proof-media">
                 {project.image ? (

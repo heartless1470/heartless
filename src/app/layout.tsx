@@ -9,9 +9,9 @@ const displayFont = Space_Grotesk({ variable: "--font-display", subsets: ["latin
 const monoFont = Geist_Mono({ variable: "--font-code", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://astrocode.studio"),
+  metadataBase: new URL("https://www.astrocodestudio.com"),
   title: {
-    default: "AstroCodes — Website Redesign & Custom Business Systems",
+    default: "AstroCodes — Independent Web Design & Development",
     template: "%s | AstroCodes",
   },
   description:
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     locale: "en_JM",
     url: "/",
     siteName: "AstroCodes",
-    title: "AstroCodes — Digital infrastructure for growing businesses",
-    description: "Website redesign and custom business systems, built around measurable business outcomes.",
+    title: "AstroCodes — Independent Web Design & Development",
+    description: "Distinctive websites and useful web apps. Explore selected work and start a conversation with a founder-led studio in Jamaica.",
   },
   twitter: {
     card: "summary_large_image",
@@ -53,7 +53,7 @@ const schemaData = {
   "@type": "ProfessionalService",
   name: "AstroCodes",
   description: "Website redesign and custom business systems for growing businesses.",
-  url: "https://astrocode.studio",
+  url: "https://www.astrocodestudio.com",
   areaServed: ["Jamaica", "Caribbean", "Remote"],
   availableLanguage: "English",
 };

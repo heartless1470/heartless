@@ -5,11 +5,11 @@ const questions = [
   },
   {
     question: "How is a custom business system priced?",
-    answer: "Discovery is US$100 / J$15,000 and is credited toward an approved build. After mapping the workflow, users, data, integrations, and security needs, you receive a scoped proposal. Systems start at US$1,500 / J$230,000 with no preset maximum.",
+    answer: "I start by understanding your workflow, users, and requirements. We agree any discovery fee before work starts, and I prepare a proposal with a clear scope, timeline, and price. You do not need to arrive with a technical specification.",
   },
   {
-    question: "Are the JMD prices converted automatically?",
-    answer: "No. The displayed USD and JMD amounts are fixed reference prices. Your proposal states the agreed billing currency and total; there is no silent exchange-rate conversion.",
+    question: "Will I work directly with you?",
+    answer: "Yes. I’m the person designing and developing the work. You can discuss ideas, ask questions, and give feedback directly to me throughout the project.",
   },
   {
     question: "Do I need a native mobile app?",

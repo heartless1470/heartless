@@ -33,7 +33,7 @@ const services: Array<{
     icon: "redesign",
     title: "Business Website Redesign",
     summary: "Rebuild the website customers judge you by.",
-    detail: "The primary offer: strategy, structure, messaging, design, performance, and enquiry flow reconsidered as one complete business asset.",
+    detail: "I rethink the structure, messaging, design, and enquiry flow together, so your website tells a coherent story and gives visitors a clear next step.",
   },
   {
     number: "03",

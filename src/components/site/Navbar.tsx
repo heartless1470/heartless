@@ -5,11 +5,10 @@ import { useState } from "react";
 import BrandMark from "./BrandMark";
 
 const links = [
-  ["Services", "#services"],
   ["Work", "#work"],
-  ["Process", "#process"],
-  ["Pricing", "#pricing"],
-  ["Client portal", "/client-portal"],
+  ["About", "#about"],
+  ["The craft", "#craft"],
+  ["Services", "#services"],
 ];
 
 export default function Navbar() {
