@@ -2547,8 +2547,7 @@ a .dashboard-card:hover {
 .developer-site :is(a,button,input,summary,textarea,select):focus-visible { outline: 2px solid #c8f545; outline-offset: 5px; }
 .developer-skip { position: absolute; top: -90px; left: 15px; z-index: 200; background: #c8f545; color: #09090d; padding: 12px 18px; }
 .developer-skip:focus { top: 12px; }
-.developer-intro { display: grid; grid-template-columns: 180px 1fr; align-items: center; gap: 48px; padding-block: 42px; border-top: 1px solid var(--site-border); border-bottom: 1px solid var(--site-border); }
-.developer-avatar img { width: 180px; height: 200px; object-fit: cover; object-position: center 35%; border: 1px solid #535443; }
+.developer-intro { padding-block: 42px; border-top: 1px solid var(--site-border); border-bottom: 1px solid var(--site-border); }
 .developer-intro h2 { font-family: var(--font-display); font-size: clamp(1.65rem,3vw,2.65rem); letter-spacing: -.045em; line-height: 1.15; margin: 0 0 16px; }
 .developer-intro p:not(.eyebrow) { color: var(--site-slate); line-height: 1.8; max-width: 790px; font-size: 1rem; }
 .developer-intro a { color: var(--site-cyan); font-family: var(--font-code); font-size: .875rem; text-underline-offset: 5px; }
@@ -2593,13 +2592,10 @@ a .dashboard-card:hover {
 .developer-site .brief-form :is(input,select,textarea) { font-size: 1rem; }
 .developer-site .form-note { font-size: .875rem; }
 @media (max-width: 800px) {
-  .developer-intro { grid-template-columns: 110px 1fr; gap: 24px; align-items: start; }
-  .developer-avatar img { width: 110px; height: 135px; }
   .developer-decisions,.developer-lab { grid-template-columns: 1fr; gap: 28px; }
   .developer-case-meta { flex-direction: column; gap: 8px; }
 }
 @media (max-width: 520px) {
-  .developer-intro { grid-template-columns: 1fr; }
   .developer-site .proof-grid { grid-template-columns: 1fr; }
   .developer-case-image>a { position: static; display: block; text-align: center; }
   .developer-demo { padding: 20px 16px; }

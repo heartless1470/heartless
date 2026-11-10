@@ -11,8 +11,10 @@ const decisions = [
 
 export function Founder() {
   return <section className="section-frame developer-intro" id="about">
-    <div className="developer-avatar"><Image src="/founder-avatar.png" alt="My chosen AstroCodes avatar: a black-and-white cat wearing a silver collar" width={704} height={960} sizes="(max-width: 700px) 110px, 180px" /></div>
-    <div><p className="eyebrow">The person behind AstroCodes</p><h2>You’re talking to the person who builds it.</h2><p>I’m an independent designer and developer based in Jamaica. I like work that has a point of view, feels good to use, and solves something specific. You bring your business knowledge; I bring the design and code.</p><a href="https://github.com/heartless1470" target="_blank" rel="noopener noreferrer">Explore my GitHub <span aria-hidden="true">↗</span></a></div>
+    <p className="eyebrow">The person behind AstroCodes</p>
+    <h2>You’re talking to the person who builds it.</h2>
+    <p>I’m an independent designer and developer based in Jamaica. I like work that has a point of view, feels good to use, and solves something specific. You bring your business knowledge; I bring the design and code.</p>
+    <a href="https://github.com/heartless1470" target="_blank" rel="noopener noreferrer">Explore my GitHub <span aria-hidden="true">↗</span></a>
   </section>;
 }
 
